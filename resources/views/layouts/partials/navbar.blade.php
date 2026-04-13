@@ -170,7 +170,7 @@
                         </button>
                         <div x-show="open" class="bg-gray-50 pl-4 py-2 space-y-2">
                             <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">PUMP SELECTOR 1</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">PUMP SELECTOR 2</a>
+                            <a href="{{ route('pumpselector.index') }}" class="block py-2 text-sm text-[#006BB3] font-bold">PUMP SELECTOR 2</a>
                         </div>
                     </div>
 

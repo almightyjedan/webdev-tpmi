@@ -24,13 +24,13 @@
                 
                 <div class="flex flex-col space-y-6">
                     
-                    <div class="w-full max-w-[280px] lg:max-w-[350px] opacity-93">
+                    <!-- <div class="w-full max-w-[280px] lg:max-w-[350px] opacity-93">
                         <div class="bg-white backdrop-blur-sm p-6 lg:p-8 rounded-tr-[50px] rounded-bl-[50px] shadow-2xl">
                             <img src="{{ asset('images/homepage/zone_1_img2.webp') }}" 
                                 alt="Evolution Teamwork Diversity" 
                                 class="w-full h-auto">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl rounded-2xl overflow-hidden max-w-5xl">
                         
