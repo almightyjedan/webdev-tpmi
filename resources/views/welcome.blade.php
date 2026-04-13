@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Torishima Services Indonesia</title>
+        <title>Torishima Pump Mfg. Indonesia</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         </head>
     <body class="antialiased font-sans bg-gray-50">
@@ -139,6 +139,18 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 lg:py-24">
+            <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="relative overflow-hidden rounded-[30px] lg:rounded-[50px] shadow-2xl border-4 border-white/50">
+                    <div class="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+                    <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                        <source src="{{ asset('images/homepage/Centrifugal pump.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </section>

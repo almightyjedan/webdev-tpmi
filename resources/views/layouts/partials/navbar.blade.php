@@ -78,7 +78,7 @@
                     <div class="absolute left-1/2 -translate-x-1/2 top-[85px] hidden group-hover:block w-56 bg-white border border-gray-100 shadow-2xl z-50">
                         <div class="py-2">
                             <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Pump Selector 1</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Pump Selector 2</a>
+                            <a href="{{ route('pumpselector.index') }}" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Pump Selector 2</a>
                         </div>
                     </div>
                 </div>
