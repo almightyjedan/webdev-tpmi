@@ -403,30 +403,42 @@
             let coeffN = {},
                 coeffM = {},
                 coeffR = {};
-            const SPREADSHEET_ID = '1hb_OVa3AY8TItj0aW8OS4YD97Awt8ON2xuKA3pZeEmo';
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwkfumcnt5i4eyb0cycYlQdjPXGjOimr-nCPTsYRFoouC77xzedNONM7uUeHiXyuIOV/exec';
 
             function init() {
-                const query = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=A:A`);
-                query.send(response => {
-                    if (!response.isError()) {
-                        totalRows = response.getDataTable().getNumberOfRows();
+                // Panggil proxy Laravel bukannya Google langsung
+                fetch(`/api/proxy/ceno-data?sheet=Data&range=A:A`)
+                    .then(res => res.text())
+                    .then(text => {
+                        // Logika parsing Google DataTable tetap sama
+                        const data = JSON.parse(text.substring(47, text.length - 2));
+                        totalRows = data.table.rows.length;
                         fetchCoefficients();
-                    }
-                });
+                    });
             }
 
             function fetchCoefficients() {
-                const qN = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=A${currentRow}:AR${currentRow}`);
-                const qM = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data_Min&range=J${currentRow}:R${currentRow}`);
-                const qR = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data_Rate&range=J${currentRow}:R${currentRow}`);
-                const qE = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Efficiency&range=Q${currentRow}:R${currentRow}`);
-                Promise.all([
-                    new Promise(res => qN.send(res)),
-                    new Promise(res => qM.send(res)),
-                    new Promise(res => qR.send(res)),
-                    new Promise(res => qE.send(res))
-                ]).then(res => handleQueryResponse(res[0], res[1], res[2], res[3]));
+                const baseUrl = '/api/proxy/ceno-data';
+                
+                // Array promise untuk mengambil semua sheet melalui proxy Laravel
+                const pN = fetch(`${baseUrl}?sheet=Data&range=A${currentRow}:AR${currentRow}`).then(r => r.text());
+                const pM = fetch(`${baseUrl}?sheet=Data_Min&range=J${currentRow}:R${currentRow}`).then(r => r.text());
+                const pR = fetch(`${baseUrl}?sheet=Data_Rate&range=J${currentRow}:R${currentRow}`).then(r => r.text());
+                const pE = fetch(`${baseUrl}?sheet=Efficiency&range=Q${currentRow}:R${currentRow}`).then(r => r.text());
+
+                Promise.all([pN, pM, pR, pE]).then(responses => {
+                    // Gunakan fungsi helper untuk parse format Google Gviz
+                    const parseGviz = (txt) => {
+                        const json = JSON.parse(txt.substring(47, txt.length - 2));
+                        return new google.visualization.DataTable(json.table);
+                    };
+
+                    handleQueryResponse(
+                        { isError: () => false, getDataTable: () => parseGviz(responses[0]) },
+                        { isError: () => false, getDataTable: () => parseGviz(responses[1]) },
+                        { isError: () => false, getDataTable: () => parseGviz(responses[2]) },
+                        { isError: () => false, getDataTable: () => parseGviz(responses[3]) }
+                    );
+                });
                 document.getElementById('pumpInput').value = currentRow - 1;
             }
 
@@ -503,17 +515,23 @@
                     document.getElementById('recommendation_container').style.display = "none";
                     return;
                 }
-                const qVisual = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Visual&range=A2:H`);
-                const qData = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=A2:AN`);
-                const qMin = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data_Min&range=N2:R`);
-                Promise.all([
-                    new Promise(res => qVisual.send(res)),
-                    new Promise(res => qData.send(res)),
-                    new Promise(res => qMin.send(res))
-                ]).then(responses => {
-                    let dtVisual = responses[0].getDataTable();
-                    let dtMax = responses[1].getDataTable();
-                    let dtMin = !responses[2].isError() ? responses[2].getDataTable() : null;
+                const baseUrl = '/api/proxy/ceno-data';
+
+                // Ambil data melalui Proxy Laravel, bukan langsung ke Google
+                const qVisual = fetch(`${baseUrl}?sheet=Visual&range=A2:H`).then(r => r.text());
+                const qData = fetch(`${baseUrl}?sheet=Data&range=A2:AN`).then(r => r.text());
+                const qMin = fetch(`${baseUrl}?sheet=Data_Min&range=N2:R`).then(r => r.text());
+
+                Promise.all([qVisual, qData, qMin]).then(responses => {
+                    const parseGviz = (txt) => {
+                        const json = JSON.parse(txt.substring(47, txt.length - 2));
+                        return new google.visualization.DataTable(json.table);
+                    };
+                    
+                    let dtVisual = parseGviz(responses[0]);
+                    let dtMax = parseGviz(responses[1]);
+                    let dtMin = parseGviz(responses[2]);
+                    
                     let tbody = document.getElementById('pumpTableBody');
                     let container = document.getElementById('recommendation_container');
                     tbody.innerHTML = "";
@@ -650,11 +668,15 @@
                 }
                 btn.innerText = "SAVING...";
                 btn.disabled = true;
-                const qData = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=AJ2:AN`);
-                qData.send(resp => {
-                    let dt = resp.getDataTable(),
-                        bulkData = [];
-                    let slope = hIn / cIn;
+                const baseUrl = '/api/proxy/ceno-data';
+                fetch(`${baseUrl}?sheet=Data&range=AD2:AH`)
+                    .then(res => res.text())
+                    .then(text => {
+                        const json = JSON.parse(text.substring(47, text.length - 2));
+                        let dt = new google.visualization.DataTable(json.table);
+                        
+                        let bulkData = [];
+                        let slope = hIn / cIn;
                     for (let i = 0; i < dt.getNumberOfRows(); i++) {
                         let n = {
                             a: dt.getValue(i, 0),
@@ -670,9 +692,13 @@
                             efficiency: [Number(document.getElementById('actDens').value), Number(document.getElementById('actVisc').value)]
                         });
                     }
-                    fetch(scriptURL, {
+                    // Di dalam function updateAllSheets()
+                    fetch('/api/proxy/ceno-save', {
                         method: 'POST',
-                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}' // WAJIB untuk keamanan Laravel
+                        },
                         body: JSON.stringify({
                             allData: bulkData
                         })
