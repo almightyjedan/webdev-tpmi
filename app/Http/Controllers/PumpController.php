@@ -47,4 +47,40 @@ class PumpController extends Controller
     {
         return view('pumpselector.cen-sv');
     }
+
+    public function getCensvData(Request $request)
+    {
+        $type = $request->query('type');
+        
+        // Tentukan ID berdasarkan type
+        $spreadsheetId = ($type === 'SEMI-OPEN') 
+            ? env('ID_CEN_SV_SEMI') 
+            : env('ID_CEN_SV_CLOSE');
+
+        // Ambil semua parameter asli (tqx, tq, sheet, range)
+        $params = $request->all();
+        unset($params['type']); // hapus agar tidak dikirim ke google
+
+        $url = "https://docs.google.com/spreadsheets/d/{$spreadsheetId}/gviz/tq?" . http_build_query($params);
+        
+        $response = Http::get($url);
+        
+        return response($response->body())->header('Content-Type', 'text/javascript');
+    }
+
+    public function saveToSheetsCensv(Request $request)
+    {
+        $type = $request->input('type');
+        $scriptUrl = env('SCRIPT_CEN_SV');
+        
+        // Tentukan ID untuk dikirim ke Google Apps Script
+        $spreadsheetId = ($type === 'SEMI-OPEN') ? env('ID_CEN_SV_SEMI') : env('ID_CEN_SV_CLOSE');
+        
+        $payload = $request->all();
+        $payload['spreadsheetId'] = $spreadsheetId;
+
+        $response = Http::post($scriptUrl, $payload);
+
+        return response()->json(['status' => 'success']);
+    }
 }

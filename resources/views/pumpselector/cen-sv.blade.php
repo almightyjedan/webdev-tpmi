@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Torishima Pump Mfg. Indonesia</title>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<style>
             :root {
@@ -339,8 +336,8 @@
                     <label>Tipe Impeller</label>
                     <div class="input-wrapper">
                         <select id="spreadsheetSelector" class="select-field" onchange="switchSpreadsheet()">
-                            <option value="13hO64XmmUWm4LEGIBk1XfI4G4Ytb3KHK8DBJFEKgMCY">CLOSE</option>
-                            <option value="1wWzB1WWwg0m8gxJdiKt0Eo15j5Aq512enRcNg9yMR0U">SEMI-OPEN</option>
+                            <option value="CLOSE">CLOSE</option>
+                            <option value="SEMI-OPEN">SEMI-OPEN</option>
                         </select>
                     </div>
                 </div>
@@ -427,9 +424,14 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			// ==========================================
+			/// ==========================================
             // FLOW 1: PERSIAPAN & PENGAMBILAN DATA
             // ==========================================
+
+            /**
+             * Inisialisasi awal saat halaman dimuat.
+             * Memuat library Google Charts dan menghitung total baris data dari spreadsheet.
+             */
             google.charts.load('current', {
                 'packages': ['corechart']
             });
@@ -439,41 +441,64 @@
             let coeffN = {},
                 coeffM = {},
                 coeffR = {};
-            let SPREADSHEET_ID = document.getElementById('spreadsheetSelector').value;
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzveA2s9xncZbZ3dHGLqEJyckuxWNAF6Zi6ckj_s5O4B9vo9gpK4o54P-WdB_4O57hX/exec';
+
+            function getSelectedType() {
+                return document.getElementById('spreadsheetSelector').value;
+            }
 
             function switchSpreadsheet() {
-                SPREADSHEET_ID = document.getElementById('spreadsheetSelector').value;
-                
                 currentRow = 2; 
-                
                 init();
-                
-                console.log("Switched to ID: " + SPREADSHEET_ID);
             }
+
             function init() {
-                const query = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=A:A`);
+                const type = getSelectedType();
+                // Proxy URL dengan parameter type
+                const url = `/api/proxy/censv-data?type=${type}&sheet=Data&range=A:A`;
+                const query = new google.visualization.Query(url);
                 query.send(response => {
-                    if (!response.isError()) {
-                        totalRows = response.getDataTable().getNumberOfRows();
-                        fetchCoefficients();
+                    if (response.isError()) {
+                        console.error('Error: ' + response.getMessage());
+                        return;
                     }
+                    totalRows = response.getDataTable().getNumberOfRows();
+                    fetchCoefficients();
                 });
             }
 
+            /**
+             * Mengambil koefisien polinomial dan data teknis dari berbagai sheet (Data, Data_Min, Data_Rate, Efficiency).
+             * Berdasarkan variabel 'currentRow' yang sedang aktif.
+             */
+            let currentGradientStatus = true;
             function fetchCoefficients() {
-                const qN = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=A${currentRow}:AR${currentRow}`);
-                const qM = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data_Min&range=J${currentRow}:R${currentRow}`);
-                const qR = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data_Rate&range=J${currentRow}:R${currentRow}`);
-                const qE = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Efficiency&range=Q${currentRow}:R${currentRow}`);
+                const type = getSelectedType();
+                const baseUrl = `/api/proxy/censv-data?type=${type}`;
+
+                const qN = new google.visualization.Query(`${baseUrl}&sheet=Data&range=A${currentRow}:AP${currentRow}`);
+                const qM = new google.visualization.Query(`${baseUrl}&sheet=Data_Min&range=J${currentRow}:R${currentRow}`);
+                const qR = new google.visualization.Query(`${baseUrl}&sheet=Data_Rate&range=J${currentRow}:R${currentRow}`);
+                const qE = new google.visualization.Query(`${baseUrl}&sheet=Efficiency&range=Q${currentRow}:R${currentRow}`);
+                
+                // Menjalankan semua query secara paralel untuk efisiensi
                 Promise.all([
                     new Promise(res => qN.send(res)),
                     new Promise(res => qM.send(res)),
                     new Promise(res => qR.send(res)),
                     new Promise(res => qE.send(res))
                 ]).then(res => handleQueryResponse(res[0], res[1], res[2], res[3]));
+
+                // Update angka pada input navigasi pompa
                 document.getElementById('pumpInput').value = currentRow - 1;
             }
+
+            /**
+             * Memproses hasil query dari Google Sheets ke dalam objek koefisien (a, b, c, d, e).
+             * @param {Object} respN - Data kurva maksimum (Data)
+             * @param {Object} respM - Data kurva minimum (Data_Min)
+             * @param {Object} respR - Data kurva rating (Data_Rate)
+             * @param {Object} respE - Data densitas & viskositas (Efficiency)
+             */
 
             function handleQueryResponse(respN, respM, respR, respE) {
                 if (respN.isError()) return;
@@ -483,8 +508,10 @@
                 let dtR = !respR.isError() ? respR.getDataTable() : null;
                 let dtE = !respE.isError() ? respE.getDataTable() : null;
 
+                // Set Judul Pompa
                 document.getElementById('main_title').innerText = dtN.getValue(0, 0);
                 
+                // Simpan koefisien polinomial derajat 4 (ax^4 + bx^3 + cx^2 + dx + e)
                 coeffN = {
                     a: dtN.getValue(0, 29),
                     b: dtN.getValue(0, 30),
@@ -506,26 +533,38 @@
                     limitX: dtR.getValue(0, 0)
                 } : {};
 
+                
+                // Isi nilai input secara otomatis dari data spreadsheet
                 document.getElementById('actHeadInput').value = dtN.getValue(0, 34) || ""; 
                 document.getElementById('actLWL').value       = dtN.getValue(0, 35) || ""; 
                 document.getElementById('actCap').value       = dtN.getValue(0, 37) || ""; 
                 document.getElementById('actHead').value      = dtN.getValue(0, 36) || ""; 
-
                 if (dtE && dtE.getNumberOfRows() > 0) {
                     document.getElementById('actDens').value = dtE.getValue(0, 0) || "";
                     document.getElementById('actVisc').value = dtE.getValue(0, 1) || "";
                 }
 
-                updatePoint();
+                currentGradientStatus = dtN.getValue(0, 41); // Status validasi gradien
+
+                updatePoint(); // Gambar ulang grafik
             }
             
             // ==========================================
             // FLOW 2: LOGIKA HITUNG & ANALISIS
             // ==========================================
+
+            /**
+             * Mencari titik potong antara kurva pompa dan kurva sistem menggunakan metode Bisection.
+             * @param {Object} n - Koefisien kurva pompa.
+             * @param {Number} g - Gradien kurva sistem (Head / Capacity).
+             * @returns {Number} Titik potong pada sumbu X (Capacity).
+             */
             function findIntersection(n, g) {
                 if (!n.a) return 0;
                 let lowX = 0,
                     highX = 150;
+                
+                // Iterasi sebanyak 40 kali untuk mendapatkan akurasi tinggi
                 for (let i = 0; i < 40; i++) {
                     let midX = (lowX + highX) / 2;
                     let yP = (n.a * Math.pow(midX, 4)) + (n.b * Math.pow(midX, 3)) + (n.c * Math.pow(midX, 2)) + (n.d * midX) + n.e;
@@ -535,21 +574,42 @@
                 return lowX;
             }
 
+            /**
+             * Memvalidasi apakah input user (Head & Capacity) berada di dalam range kurva.
+             * Memperbarui teks status UI dan memicu penggambaran grafik.
+             */
             function updatePoint() {
                 let hIn = parseFloat(document.getElementById('actHead').value) || 0,
                     cIn = parseFloat(document.getElementById('actCap').value) || 0;
                 let statusText = "<span style='color:#94a3b8;'>WAITING INPUT</span>";
                 if (hIn > 0 && cIn > 0) {
+                    // Hitung nilai Y pada kurva Max dan Min berdasarkan X (cIn) inputan
                     let yMax = (coeffN.a * Math.pow(cIn, 4)) + (coeffN.b * Math.pow(cIn, 3)) + (coeffN.c * Math.pow(cIn, 2)) + (coeffN.d * cIn) + coeffN.e;
                     let yMin = coeffM.a ? (coeffM.a * Math.pow(cIn, 4)) + (coeffM.b * Math.pow(cIn, 3)) + (coeffM.c * Math.pow(cIn, 2)) + (coeffM.d * cIn) + coeffM.e : 0;
-                    statusText = (hIn <= (yMax + 0.1) && hIn >= (yMin - 0.1)) ? "<b style='color:green;'>IN RANGE</b>" : "<b style='color:red;'>OVERFLOW / OUT OF RANGE</b>";
+                    
+                    // Cek apakah titik berada di antara kurva Max dan Min (dengan toleransi 0.1)
+                    if (hIn <= (yMax + 0.1) && hIn >= (yMin - 0.1)) {
+                        if (currentGradientStatus === true) {
+                            statusText = "<b style='color:green;'>IN RANGE</b>";
+                        } else {
+                            statusText = "<b style='color:red;'>OVERFLOW / OUT OF RANGE</b>";
+                        }
+                    } else {
+                        statusText = "<b style='color:red;'>OVERFLOW / OUT OF RANGE</b>";
+                    }
                 }
                 document.getElementById('equation_title').innerHTML = `<div>Status: ${statusText}</div>`;
-                drawCurve(coeffN, coeffM, coeffR, cIn, hIn);
-                checkAllPumps();
+                drawCurve(coeffN, coeffM, coeffR, cIn, hIn); // Gambar kurva
+                checkAllPumps(); // Cek rekomendasi pompa lain
             }
 
+            /**
+             * Memindai seluruh baris data di spreadsheet untuk menemukan pompa mana saja yang cocok dengan input Head & Capacity.
+             * Hasilnya ditampilkan dalam tabel rekomendasi.
+             */
             function checkAllPumps() {
+                const type = document.getElementById('spreadsheetSelector').value;
+                const baseUrl = `/api/proxy/censv-data?type=${type}`;
                 let hIn = parseFloat(document.getElementById('actHead').value) || 0;
                 let cIn = parseFloat(document.getElementById('actCap').value) || 0;
                 if (hIn <= 0 || cIn <= 0) {
@@ -557,9 +617,9 @@
                     return;
                 }
                 
-                const qVisual = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Visual&range=A2:I`);
-                const qData = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=A2:AN`);
-                const qMin = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data_Min&range=N2:R`);
+                const qVisual = new google.visualization.Query(`${baseUrl}&sheet=Visual&range=A2:I`);
+                const qData = new google.visualization.Query(`${baseUrl}&sheet=Data&range=A2:AP`);
+                const qMin = new google.visualization.Query(`${baseUrl}&sheet=Data_Min&range=N2:R`);
                 
                 Promise.all([
                     new Promise(res => qVisual.send(res)),
@@ -575,6 +635,7 @@
                     let foundCount = 0;
                     
                     for (let i = 0; i < dtMax.getNumberOfRows(); i++) {
+                        let isGradientValid = dtMax.getValue(i, 41);
                         let n = {
                             a: Number(dtMax.getValue(i, 29)), b: Number(dtMax.getValue(i, 30)),
                             c: Number(dtMax.getValue(i, 31)), d: Number(dtMax.getValue(i, 32)), e: Number(dtMax.getValue(i, 33))
@@ -587,9 +648,8 @@
                         const calcY = (c, x) => (c.a * Math.pow(x, 4)) + (c.b * Math.pow(x, 3)) + (c.c * Math.pow(x, 2)) + (c.d * x) + c.e;
                         let yMax = calcY(n, cIn);
                         let yMin = m ? calcY(m, cIn) : 0;
-
-                        // Gunakan toleransi 0.5 agar sinkron dengan status
-                        if (hIn <= (yMax + 0.001) && hIn >= (yMin - 0.5)) {
+                        // Jika input masuk dalam range pompa ke-i, tambahkan ke tabel
+                        if (hIn <= (yMax + 0.001) && hIn >= (yMin - 0.5)&& isGradientValid === true) {
                             foundCount++;
                             let row = tbody.insertRow();
                             row.innerHTML = `
@@ -611,8 +671,13 @@
             }
 
             // ==========================================
-            // FLOW 3: VISUALISASI (GAMBAR GRAFIK BERSIH)
+            // FLOW 3: VISUALISASI (GAMBAR GRAFIK)
             // ==========================================
+
+            /**
+             * Menggambar kurva performa menggunakan Google LineChart API.
+             * Menghasilkan kurva Max, Min, Rate, dan satu titik segitiga untuk posisi aktual.
+             */
             function drawCurve(n, m, r, actX, actY) {
                 var data = new google.visualization.DataTable();
                 data.addColumn('number', 'X');
@@ -621,13 +686,13 @@
                 data.addColumn('number', 'Rate');
                 data.addColumn('number', 'Actual Point');
 
+                 // Menentukan batas sumbu X dan Y secara dinamis agar grafik tidak terpotong
                 let maxDataLimit = Math.max(n.limitX || 0, m.limitX || 0, r.limitX || 0, actX || 0);
-                
                 let dynamicXMax = maxDataLimit > 0 ? maxDataLimit * 1.1 : 100;
-
                 let highestPoint = Math.max(n.e || 0, m.e || 0, r.e || 0, actY || 0);
                 let dynamicYMax = Math.max(50, Math.ceil((highestPoint * 1.3) / 10) * 10);
 
+                // Loop untuk membentuk garis kurva dari kumpulan titik-titik (250 langkah)
                 for (var x = 0; x <= dynamicXMax; x += (dynamicXMax / 250)) {
                     let yN = null, yM = null, yR = null;
 
@@ -652,18 +717,20 @@
                     ]);
                 }
 
+                // Tambahkan titik aktual (Actual Point) sebagai data point tunggal
                 if (actX > 0 && actY > 0) {
                     data.addRow([actX, null, null, null, actY]);
                 }
 
                 var options = {
+                    // Konfigurasi tampilan: warna, ketebalan garis, dan desain titik actual
                     colors: ['#ef4444', '#3b82f6', '#22c55e', '#000000'],
                     curveType: 'function',
                     legend: { position: 'bottom' },
                     lineWidth: 2.5,
                     series: {
-                        2: { lineDashStyle: [4, 4] }, 
-                        3: { pointSize: 12, lineWidth: 0, pointShape: 'triangle', visibleInLegend: true, labelInLegend: 'Actual Point' } 
+                        2: { lineDashStyle: [4, 4] }, // Garis Rate putus-putus
+                        3: { pointSize: 12, lineWidth: 0, pointShape: 'triangle', visibleInLegend: true, labelInLegend: 'Actual Point' } // Titik aktual bentuk segitiga
                     },
                     chartArea: { width: '92%', height: '80%', top: 20, left: 50 },
                     hAxis: { 
@@ -682,6 +749,10 @@
             // ==========================================
             // FLOW 4: NAVIGASI & PENYIMPANAN
             // ==========================================
+
+            /**
+             * Navigasi antar baris data (pompa) menggunakan tombol Prev/Next.
+             */
             function changeGraph(step) {
                 let targetRow = currentRow + step;
                 if (targetRow >= 2 && targetRow <= totalRows) {
@@ -690,12 +761,20 @@
                 }
             }
 
+            /**
+             * Melompat langsung ke nomor pompa tertentu (digunakan oleh tombol VIEW di tabel rekomendasi).
+             */
             function goToPump(index) {
                 currentRow = index + 1;
                 fetchCoefficients();
             }
 
+            /**
+             * Menghitung titik potong untuk SEMUA pompa di spreadsheet dan mengirimkan hasilnya secara massal
+             * ke Google Apps Script (Web App) untuk disimpan kembali ke spreadsheet.
+             */
             function updateAllSheets() {
+                const type = getSelectedType();
                 const btn = document.getElementById('saveBtn');
                 let headIn = parseFloat(document.getElementById('actHeadInput').value) || 0;
                 let lwlIn = parseFloat(document.getElementById('actLWL').value) || 0;
@@ -710,18 +789,24 @@
                 btn.innerText = "SAVING...";
                 btn.disabled = true;
 
-                const qData = new google.visualization.Query(`https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?sheet=Data&range=AD:AH`);
+                 // Ambil koefisien seluruh pompa untuk perhitungan massal
+                const qData = new google.visualization.Query(`/api/proxy/censv-data?type=${type}&sheet=Data&range=AD:AH`);
                 qData.send(resp => {
+                    if (resp.isError()) { 
+                        btn.disabled = false; btn.innerText = "SAVE TO SHEETS"; 
+                        return; 
+                    }
+                    
                     let dt = resp.getDataTable();
                     let bulkData = [];
-                    let slope = (capIn > 0) ? bowlHead / capIn : 0;
+                    let slope = (capIn > 0) ? bowlHead / capIn : 0; // Gradien sistem
 
                     for (let i = 0; i < dt.getNumberOfRows(); i++) {
                         let n = { a: dt.getValue(i, 0), b: dt.getValue(i, 1), c: dt.getValue(i, 2), d: dt.getValue(i, 3), e: dt.getValue(i, 4) };
-                        let rx = findIntersection(n, slope);
-                        let ry = slope * rx;
+                        let rx = findIntersection(n, slope); // Cari titik potong X
+                        let ry = slope * rx; // Cari titik potong Y
 
-                       // Ganti bagian bulkData.push lama dengan ini:
+                       // Bagian bulkData.push kirim ke spreadsheet:
                         bulkData.push({
                             part1: [
                                 Number(headIn), // Masuk ke AI (35)
@@ -739,16 +824,23 @@
                         });
                     }
 
-                    fetch(scriptURL, {
+                    // Kirim data ke Google Apps Script via POST
+                    fetch("{{ route('proxy.censv.save') }}", {
                         method: 'POST',
-                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
                         body: JSON.stringify({ 
-                            spreadsheetId: SPREADSHEET_ID, // ID dinamis dari dropdown
+                            type: type, 
                             allData: bulkData 
                         })
                     }).then(() => {
-                        const tipe = document.getElementById('spreadsheetSelector').options[document.getElementById('spreadsheetSelector').selectedIndex].text;
-                        alert("Data Berhasil Disimpan ke Spreadsheet " + tipe + "!");
+                        alert("Data Berhasil Disimpan!");
+                        btn.innerText = "SAVE TO SHEETS";
+                        btn.disabled = false;
+                    }).catch(err => {
+                        console.error(err);
                         btn.innerText = "SAVE TO SHEETS";
                         btn.disabled = false;
                     });
