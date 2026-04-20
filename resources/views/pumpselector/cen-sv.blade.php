@@ -1,869 +1,117 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		<style>
-            :root {
-                --primary: #1b4399;
-                --primary-light: #3b82f6;
-                --card-bg: #ffffff;
-                --text-main: #1e293b;
-                --accent-blue: #e0f2fe;
-                --danger: #ef4444;
-                --success: #10b981;
-                --border-color: #e2e8f0;
-                --slate-soft: #f8fafc;
-                --slate-text: #64748b;
-            }
+<html lang="en">
+    <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="m-0 p-0 flex flex-col min-h-screen font-['Inter','Segoe_UI',sans-serif] bg-[#f8fafc] box-border 
+                 [--primary:#1b4399] [--primary-light:#3b82f6] [--card-bg:#ffffff] [--text-main:#1e293b] 
+                 [--accent-blue:#e0f2fe] [--danger:#ef4444] [--success:#10b981] [--border-color:#e2e8f0] 
+                 [--slate-soft:#f8fafc] [--slate-text:#64748b] max-[600px]:p-[10px]">
+        
+        @include('layouts.partials.navbar')
 
-            body {
-                margin: 0;
-                padding: 10px;
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-                min-height: 100vh;
-                font-family: 'Inter', 'Segoe UI', sans-serif;
-                box-sizing: border-box;
-                background: #f8fafc;
-            }
-
-            .card-chart {
-                background: var(--card-bg);
-                border-radius: 24px;
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-                min-height: calc(100vh - 40px);
-                padding: 25px;
-                display: flex;
-                flex-direction: column;
-                box-sizing: border-box;
-                border: 1px solid rgba(226, 232, 240, 0.8);
-            }
-
-            .chart-header {
-                text-align: center;
-                font-size: 22px;
-                font-weight: 800;
-                color: var(--primary);
-                margin-bottom: 5px;
-            }
-
-            #equation_title {
-                text-align: center;
-                font-size: 16px;
-                font-family: sans-serif;
-                color: var(--slate-text);
-                line-height: 1.5;
-                background: var(--slate-soft);
-                padding: 12px 20px;
-                border-radius: 12px;
-                align-self: center;
-                border: 1px solid var(--border-color);
-                min-width: 250px;
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-
-            #chart_div {
-                width: 100%;
-                height: 500px;
-                flex-grow: 0;
-            }
-
-            .actual-input-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 20px;
-                margin-bottom: 20px;
-                padding: 20px;
-                background: #ffffff;
-                border-radius: 20px;
-                border: 1px solid var(--border-color);
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-                align-self: center;
-                width: auto;
-                max-width: 100%;
-                flex-wrap: wrap;
-            }
-
-            .input-group {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .input-group label {
-                font-size: 11px;
-                font-weight: 800;
-                color: #94a3b8;
-                text-transform: uppercase;
-            }
-
-            .input-wrapper {
-                display: flex;
-                align-items: center;
-                background: var(--slate-soft);
-                border: 2px solid var(--border-color);
-                border-radius: 12px;
-                padding: 5px 15px;
-            }
-
-            .input-field {
-                width: 70px;
-                border: none;
-                background: transparent;
-                padding: 8px 0;
-                text-align: center;
-                font-weight: 800;
-                font-size: 18px;
-                color: var(--primary);
-                outline: none;
-            }
-
-            .select-field {
-                width: 120px;
-                border: none;
-                background: transparent;
-                padding: 8px 0;
-                text-align: center;
-                font-weight: 800;
-                font-size: 16px;
-                color: var(--primary);
-                outline: none;
-            }
-
-            .input-field::-webkit-outer-spin-button,
-            .input-field::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-
-            .input-field[type=number] {
-                -moz-appearance: textfield;
-            }
-
-            .unit-label {
-                font-size: 12px;
-                font-weight: 700;
-                color: #cbd5e1;
-                margin-left: 5px;
-            }
-
-            .btn-save {
-                background: var(--success);
-                color: white;
-                border: none;
-                padding: 12px 20px;
-                border-radius: 12px;
-                cursor: pointer;
-                font-weight: 800;
-                transition: transform 0.2s;
-            }
-
-            .btn-save:active {
-                transform: scale(0.95);
-            }
-
-            .nav-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                margin-top: 15px;
-                flex-wrap: wrap;
-            }
-
-            .btn-nav {
-                background: var(--primary);
-                color: white;
-                border: none;
-                padding: 10px 15px;
-                border-radius: 12px;
-                cursor: pointer;
-                font-weight: 700;
-                font-size: 13px;
-            }
-
-            .btn-nav:disabled {
-                background: #cbd5e1;
-            }
-
-            .page-input-container {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                background: var(--accent-blue);
-                padding: 5px 15px;
-                border-radius: 12px;
-                border: 2px solid #bae6fd;
-            }
-
-            .pump-label-nav {
-                font-weight: 800;
-                color: var(--primary);
-                font-size: 12px;
-            }
-
-            .pump-number-input {
-                width: 35px;
-                border: 1px solid #7dd3fc;
-                border-radius: 8px;
-                text-align: center;
-                padding: 4px;
-                font-size: 14px;
-                font-weight: 800;
-                color: var(--primary);
-                outline: none;
-            }
-
-            .recommendation-container {
-                margin-top: 15px;
-                background: white;
-                padding: 15px;
-                border-radius: 16px;
-                border: 1px solid var(--border-color);
-                display: none;
-                max-width: 1000px;
-                width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-                box-sizing: border-box;
-                overflow-x: auto;
-            }
-
-            .recommendation-title {
-                color: var(--primary);
-                margin: 0 0 10px 0;
-                font-size: 14px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            .pump-table {
-                width: 100%;
-                border-collapse: collapse;
-                font-size: 12px;
-                text-align: left;
-                min-width: 700px;
-            }
-
-            .pump-table thead tr {
-                color: var(--slate-text);
-                border-bottom: 2px solid #f1f5f9;
-            }
-
-            .pump-table th,
-            .pump-table td {
-                padding: 10px 8px;
-                text-align: center;
-            }
-
-            .pump-table td {
-                border-bottom: 1px solid #f1f5f9;
-            }
-
-            .td-number {
-                color: #94a3b8;
-            }
-
-            .td-name {
-                font-weight: bold;
-            }
-
-            .td-sp {
-                color: #b91c1c;
-                font-weight: bold;
-            }
-
-            .td-eff {
-                color: #15803d;
-                font-weight: bold;
-            }
-
-            .btn-view {
-                background: var(--primary);
-                color: white;
-                border: none;
-                padding: 6px 12px;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 11px;
-                font-weight: bold;
-            }
-
-            @media (max-width: 600px) {
-                body {
-                    padding: 10px;
-                }
-
-                .card-chart {
-                    padding: 15px;
-                    border-radius: 16px;
-                }
-
-                .chart-header {
-                    font-size: 18px;
-                }
-
-                #chart_div {
-                    height: 350px;
-                }
-
-
-                .btn-save {
-                    width: 100%;
-                }
-
-                .input-wrapper {
-                    padding: 5px 10px;
-                }
-
-                .input-field {
-                    width: 60px;
-                    font-size: 16px;
-                }
-            }
-		</style>
-	</head>
-	<body>
-		<div class="card-chart">
-			<div class="actual-input-container">
-                <div class="input-group">
-                    <label>Tipe Impeller</label>
-                    <div class="input-wrapper">
-                        <select id="spreadsheetSelector" class="select-field" onchange="switchSpreadsheet()">
+        <div class="bg-[var(--card-bg)] rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.05)] w-full max-w-full h-auto min-h-[calc(100vh-40px)] p-[25px] flex flex-col box-border border border-[rgba(226,232,240,0.8)] max-[600px]:p-[15px] max-[600px]:rounded-[16px]">
+            
+            <div class="flex justify-center items-center gap-[20px] mb-[20px] p-[20px] bg-white rounded-[20px] border border-[var(--border-color)] shadow-[0_4px_15px_rgba(0,0,0,0.05)] self-center w-auto max-w-full flex-wrap">
+                
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">Tipe Impeller</label>
+                    <div class="flex items-center bg-[var(--slate-soft)] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <select id="spreadsheetSelector" class="w-[120px] border-none bg-transparent py-[8px] text-center font-[800] text-[16px] text-[var(--primary)] outline-none">
                             <option value="CLOSE">CLOSE</option>
                             <option value="SEMI-OPEN">SEMI-OPEN</option>
                         </select>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label>Head</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="actHeadInput" class="input-field" placeholder="0" oninput="calculateBowlHeadRealtime()">
-                        <span class="unit-label">m</span>
+
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">Head</label>
+                    <div class="flex items-center bg-[var(--slate-soft)] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <input type="number" id="actHeadInput" class="w-[70px] border-none bg-transparent py-[8px] text-center font-[800] text-[18px] text-[var(--primary)] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none max-[600px]:w-[60px] max-[600px]:text-[16px]" placeholder="0">
+                        <span class="text-[12px] font-[700] text-[#cbd5e1] ml-[5px]">m</span>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <label>LWL</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="actLWL" class="input-field" placeholder="0" oninput="calculateBowlHeadRealtime()">
-                        <span class="unit-label">m</span>
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">LWL</label>
+                    <div class="flex items-center bg-[var(--slate-soft)] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <input type="number" id="actLWL" class="w-[70px] border-none bg-transparent py-[8px] text-center font-[800] text-[18px] text-[var(--primary)] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none max-[600px]:w-[60px] max-[600px]:text-[16px]" placeholder="0">
+                        <span class="text-[12px] font-[700] text-[#cbd5e1] ml-[5px]">m</span>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <label>Bowl Head</label>
-                    <div class="input-wrapper" style="background: #e2e8f0;"> <input type="number" id="actHead" class="input-field" placeholder="Calc..." readonly>
-                        <span class="unit-label">m</span>
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">Bowl Head</label>
+                    <div class="flex items-center bg-[#e2e8f0] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <input type="number" id="actHead" class="w-[70px] border-none bg-transparent py-[8px] text-center font-[800] text-[18px] text-[var(--primary)] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none max-[600px]:w-[60px] max-[600px]:text-[16px]" placeholder="-" readonly>
+                        <span class="text-[12px] font-[700] text-[#cbd5e1] ml-[5px]">m</span>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <label>Capacity</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="actCap" class="input-field" placeholder="0" oninput="updatePoint()"> 
-                        <span class="unit-label">m³/h</span>
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">Capacity</label>
+                    <div class="flex items-center bg-[var(--slate-soft)] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <input type="number" id="actCap" class="w-[70px] border-none bg-transparent py-[8px] text-center font-[800] text-[18px] text-[var(--primary)] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none max-[600px]:w-[60px] max-[600px]:text-[16px]" placeholder="0"> 
+                        <span class="text-[12px] font-[700] text-[#cbd5e1] ml-[5px]">m³/h</span>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <label>Density</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="actDens" class="input-field" placeholder="0"> 
-                        <span class="unit-label">kg/m³</span>
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">Density</label>
+                    <div class="flex items-center bg-[var(--slate-soft)] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <input type="number" id="actDens" class="w-[70px] border-none bg-transparent py-[8px] text-center font-[800] text-[18px] text-[var(--primary)] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none max-[600px]:w-[60px] max-[600px]:text-[16px]" placeholder="0"> 
+                        <span class="text-[12px] font-[700] text-[#cbd5e1] ml-[5px]">kg/m³</span>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <label>Viscosity</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="actVisc" class="input-field" placeholder="0"> 
-                        <span class="unit-label">cP</span>
+                <div class="flex flex-col gap-[8px]">
+                    <label class="text-[11px] font-[800] text-[#94a3b8] uppercase">Viscosity</label>
+                    <div class="flex items-center bg-[var(--slate-soft)] border-2 border-[var(--border-color)] rounded-[12px] px-[15px] py-[5px] max-[600px]:px-[10px]">
+                        <input type="number" id="actVisc" class="w-[70px] border-none bg-transparent py-[8px] text-center font-[800] text-[18px] text-[var(--primary)] outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none max-[600px]:w-[60px] max-[600px]:text-[16px]" placeholder="0"> 
+                        <span class="text-[12px] font-[700] text-[#cbd5e1] ml-[5px]">cP</span>
                     </div>
                 </div>
                 
-                <button id="saveBtn" class="btn-save" onclick="updateAllSheets()">SAVE TO SHEETS</button>
+                <button id="saveBtn" class="bg-[var(--success)] text-white border-none py-[12px] px-[20px] rounded-[12px] cursor-pointer font-[800] transition-transform active:scale-95 max-[600px]:w-full">SAVE TO SHEETS</button>
             </div>
-			<div id="recommendation_container" class="recommendation-container">
-				<h4 class="recommendation-title">Pompa Sesuai Range</h4>
-				<table id="pumpTable" class="pump-table">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>Size Pump</th>
-							<th>Qopt max (m³/h)</th>
-							<th>Qopt (m³/h)</th>
-							<th>Flow Ratio</th>
-							<th>SP (kW)</th>
-                            <th>Efficiency Pump (%)</th>
-							<th>Efficiency Bowl (%)</th>
-							<th>Potongan Impeller (mm)</th>
-							<th>Impeller Max (mm)</th>
-							<th>Aksi</th>
-						</tr>
-					</thead>
-					<tbody id="pumpTableBody"></tbody>
-				</table>
-			</div>
-			<div class="chart-header" id="main_title">Pump Performance Analysis</div>
-			<div id="equation_title">Loading coefficients...</div>
-			<div id="chart_div"></div>
-			<div class="nav-container">
-				<button class="btn-nav" id="prevBtn" onclick="changeGraph(-1)">⇠ PREV</button>
-				<div class="page-input-container">
-					<span class="pump-label-nav">POMPA</span>
-					<input type="number" id="pumpInput" class="pump-number-input" value="1">
-				</div>
-				<button class="btn-nav" id="nextBtn" onclick="changeGraph(1)">NEXT ⇢</button>
-			</div>
-		</div>
-		<script type="text/javascript">
-			/// ==========================================
-            // FLOW 1: PERSIAPAN & PENGAMBILAN DATA
-            // ==========================================
 
-            /**
-             * Inisialisasi awal saat halaman dimuat.
-             * Memuat library Google Charts dan menghitung total baris data dari spreadsheet.
-             */
-            google.charts.load('current', {
-                'packages': ['corechart']
-            });
-            google.charts.setOnLoadCallback(init);
-            let currentRow = 2,
-                totalRows = 0;
-            let coeffN = {},
-                coeffM = {},
-                coeffR = {};
+            <div id="recommendation_container" class="mt-[15px] bg-white p-[15px] rounded-[16px] border border-[var(--border-color)] hidden max-w-[1000px] w-full mx-auto box-border overflow-x-auto">
+                <h4 class="text-[var(--primary)] m-0 mb-[10px] text-[14px] uppercase tracking-[1px] font-bold">Pompa Sesuai Range</h4>
+                <table id="pumpTable" class="w-full border-collapse text-[12px]">
+                    <thead class="bg-[#f8fafc]">
+                        <tr class="text-[var(--slate-text)] border-b border-[#e2e8f0]">
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">No</th>
+                            <th class="p-[12px_8px] text-left font-bold uppercase text-[11px]">Size Pump</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Qopt max (m³/h)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Qopt (m³/h)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Flow Ratio</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">SP (kW)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Efficiency Pump (%)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Efficiency Bowl (%)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Potongan Impeller (mm)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Impeller Max (mm)</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pumpTableBody"></tbody>
+                </table>
+            </div>
 
-            function getSelectedType() {
-                return document.getElementById('spreadsheetSelector').value;
-            }
+            <div class="text-center text-[22px] font-[800] text-[var(--primary)] mb-[5px] max-[600px]:text-[18px]" id="main_title">Pump Performance Analysis</div>
+            <div id="equation_title" class="text-center text-[16px] font-sans text-[var(--slate-text)] leading-[1.5] bg-[var(--slate-soft)] p-[12px_20px] rounded-[12px] self-center border border-[var(--border-color)] min-w-[250px] max-w-full box-border">Loading coefficients...</div>
+            <div id="chart_div" class="w-full h-[500px] flex-grow-0 max-[600px]:h-[350px]"></div>
 
-            function switchSpreadsheet() {
-                currentRow = 2; 
-                init();
-            }
+            <div class="flex justify-center items-center gap-[10px] mt-[15px] flex-wrap">
+                <button class="bg-[var(--primary)] text-white border-none p-[10px_15px] rounded-[12px] cursor-pointer font-[700] text-[13px] disabled:bg-[#cbd5e1]" id="prevBtn">⇠ PREV</button>
+                <div class="flex items-center gap-[8px] bg-[var(--accent-blue)] p-[5px_15px] rounded-[12px] border-2 border-[#bae6fd]">
+                    <span class="font-[800] text-[var(--primary)] text-[12px]">POMPA</span>
+                    <input type="number" id="pumpInput" class="w-[35px] border border-[#7dd3fc] rounded-[8px] text-center p-[4px] text-[14px] font-[800] text-[var(--primary)] outline-none" value="1">
+                </div>
+                <button class="bg-[var(--primary)] text-white border-none p-[10px_15px] rounded-[12px] cursor-pointer font-[700] text-[13px] disabled:bg-[#cbd5e1]" id="nextBtn">NEXT ⇢</button>
+            </div>
+        </div>
 
-            function init() {
-                const type = getSelectedType();
-                // Proxy URL dengan parameter type
-                const url = `/api/proxy/censv-data?type=${type}&sheet=Data&range=A:A`;
-                const query = new google.visualization.Query(url);
-                query.send(response => {
-                    if (response.isError()) {
-                        console.error('Error: ' + response.getMessage());
-                        return;
-                    }
-                    totalRows = response.getDataTable().getNumberOfRows();
-                    fetchCoefficients();
-                });
-            }
-
-            /**
-             * Mengambil koefisien polinomial dan data teknis dari berbagai sheet (Data, Data_Min, Data_Rate, Efficiency).
-             * Berdasarkan variabel 'currentRow' yang sedang aktif.
-             */
-            let currentGradientStatus = true;
-            function fetchCoefficients() {
-                const type = getSelectedType();
-                const baseUrl = `/api/proxy/censv-data?type=${type}`;
-
-                const qN = new google.visualization.Query(`${baseUrl}&sheet=Data&range=A${currentRow}:AP${currentRow}`);
-                const qM = new google.visualization.Query(`${baseUrl}&sheet=Data_Min&range=J${currentRow}:R${currentRow}`);
-                const qR = new google.visualization.Query(`${baseUrl}&sheet=Data_Rate&range=J${currentRow}:R${currentRow}`);
-                const qE = new google.visualization.Query(`${baseUrl}&sheet=Efficiency&range=Q${currentRow}:R${currentRow}`);
-                
-                // Menjalankan semua query secara paralel untuk efisiensi
-                Promise.all([
-                    new Promise(res => qN.send(res)),
-                    new Promise(res => qM.send(res)),
-                    new Promise(res => qR.send(res)),
-                    new Promise(res => qE.send(res))
-                ]).then(res => handleQueryResponse(res[0], res[1], res[2], res[3]));
-
-                // Update angka pada input navigasi pompa
-                document.getElementById('pumpInput').value = currentRow - 1;
-            }
-
-            /**
-             * Memproses hasil query dari Google Sheets ke dalam objek koefisien (a, b, c, d, e).
-             * @param {Object} respN - Data kurva maksimum (Data)
-             * @param {Object} respM - Data kurva minimum (Data_Min)
-             * @param {Object} respR - Data kurva rating (Data_Rate)
-             * @param {Object} respE - Data densitas & viskositas (Efficiency)
-             */
-
-            function handleQueryResponse(respN, respM, respR, respE) {
-                if (respN.isError()) return;
-                
-                let dtN = respN.getDataTable();
-                let dtM = !respM.isError() ? respM.getDataTable() : null;
-                let dtR = !respR.isError() ? respR.getDataTable() : null;
-                let dtE = !respE.isError() ? respE.getDataTable() : null;
-
-                // Set Judul Pompa
-                document.getElementById('main_title').innerText = dtN.getValue(0, 0);
-                
-                // Simpan koefisien polinomial derajat 4 (ax^4 + bx^3 + cx^2 + dx + e)
-                coeffN = {
-                    a: dtN.getValue(0, 29),
-                    b: dtN.getValue(0, 30),
-                    c: dtN.getValue(0, 31),
-                    d: dtN.getValue(0, 32),
-                    e: dtN.getValue(0, 33),
-                    limitX: dtN.getValue(0, 21)
-                };
-
-                coeffM = dtM ? {
-                    a: dtM.getValue(0, 4), b: dtM.getValue(0, 5),
-                    c: dtM.getValue(0, 6), d: dtM.getValue(0, 7), e: dtM.getValue(0, 8),
-                    limitX: dtM.getValue(0, 0)
-                } : {};
-
-                coeffR = dtR ? {
-                    a: dtR.getValue(0, 4), b: dtR.getValue(0, 5),
-                    c: dtR.getValue(0, 6), d: dtR.getValue(0, 7), e: dtR.getValue(0, 8),
-                    limitX: dtR.getValue(0, 0)
-                } : {};
-
-                
-                // Isi nilai input secara otomatis dari data spreadsheet
-                document.getElementById('actHeadInput').value = dtN.getValue(0, 34) || ""; 
-                document.getElementById('actLWL').value       = dtN.getValue(0, 35) || ""; 
-                document.getElementById('actCap').value       = dtN.getValue(0, 37) || ""; 
-                document.getElementById('actHead').value      = dtN.getValue(0, 36) || ""; 
-                if (dtE && dtE.getNumberOfRows() > 0) {
-                    document.getElementById('actDens').value = dtE.getValue(0, 0) || "";
-                    document.getElementById('actVisc').value = dtE.getValue(0, 1) || "";
-                }
-
-                currentGradientStatus = dtN.getValue(0, 41); // Status validasi gradien
-
-                updatePoint(); // Gambar ulang grafik
-            }
-            
-            // ==========================================
-            // FLOW 2: LOGIKA HITUNG & ANALISIS
-            // ==========================================
-
-            /**
-             * Mencari titik potong antara kurva pompa dan kurva sistem menggunakan metode Bisection.
-             * @param {Object} n - Koefisien kurva pompa.
-             * @param {Number} g - Gradien kurva sistem (Head / Capacity).
-             * @returns {Number} Titik potong pada sumbu X (Capacity).
-             */
-            function findIntersection(n, g) {
-                if (!n.a) return 0;
-                let lowX = 0,
-                    highX = 150;
-                
-                // Iterasi sebanyak 40 kali untuk mendapatkan akurasi tinggi
-                for (let i = 0; i < 40; i++) {
-                    let midX = (lowX + highX) / 2;
-                    let yP = (n.a * Math.pow(midX, 4)) + (n.b * Math.pow(midX, 3)) + (n.c * Math.pow(midX, 2)) + (n.d * midX) + n.e;
-                    if (yP > g * midX) lowX = midX;
-                    else highX = midX;
-                }
-                return lowX;
-            }
-
-            /**
-             * Memvalidasi apakah input user (Head & Capacity) berada di dalam range kurva.
-             * Memperbarui teks status UI dan memicu penggambaran grafik.
-             */
-            function updatePoint() {
-                let hIn = parseFloat(document.getElementById('actHead').value) || 0,
-                    cIn = parseFloat(document.getElementById('actCap').value) || 0;
-                let statusText = "<span style='color:#94a3b8;'>WAITING INPUT</span>";
-                if (hIn > 0 && cIn > 0) {
-                    // Hitung nilai Y pada kurva Max dan Min berdasarkan X (cIn) inputan
-                    let yMax = (coeffN.a * Math.pow(cIn, 4)) + (coeffN.b * Math.pow(cIn, 3)) + (coeffN.c * Math.pow(cIn, 2)) + (coeffN.d * cIn) + coeffN.e;
-                    let yMin = coeffM.a ? (coeffM.a * Math.pow(cIn, 4)) + (coeffM.b * Math.pow(cIn, 3)) + (coeffM.c * Math.pow(cIn, 2)) + (coeffM.d * cIn) + coeffM.e : 0;
-                    
-                    // Cek apakah titik berada di antara kurva Max dan Min (dengan toleransi 0.1)
-                    if (hIn <= (yMax + 0.1) && hIn >= (yMin - 0.1)) {
-                        if (currentGradientStatus === true) {
-                            statusText = "<b style='color:green;'>IN RANGE</b>";
-                        } else {
-                            statusText = "<b style='color:red;'>OVERFLOW / OUT OF RANGE</b>";
-                        }
-                    } else {
-                        statusText = "<b style='color:red;'>OVERFLOW / OUT OF RANGE</b>";
-                    }
-                }
-                document.getElementById('equation_title').innerHTML = `<div>Status: ${statusText}</div>`;
-                drawCurve(coeffN, coeffM, coeffR, cIn, hIn); // Gambar kurva
-                checkAllPumps(); // Cek rekomendasi pompa lain
-            }
-
-            /**
-             * Memindai seluruh baris data di spreadsheet untuk menemukan pompa mana saja yang cocok dengan input Head & Capacity.
-             * Hasilnya ditampilkan dalam tabel rekomendasi.
-             */
-            function checkAllPumps() {
-                const type = document.getElementById('spreadsheetSelector').value;
-                const baseUrl = `/api/proxy/censv-data?type=${type}`;
-                let hIn = parseFloat(document.getElementById('actHead').value) || 0;
-                let cIn = parseFloat(document.getElementById('actCap').value) || 0;
-                if (hIn <= 0 || cIn <= 0) {
-                    document.getElementById('recommendation_container').style.display = "none";
-                    return;
-                }
-                
-                const qVisual = new google.visualization.Query(`${baseUrl}&sheet=Visual&range=A2:I`);
-                const qData = new google.visualization.Query(`${baseUrl}&sheet=Data&range=A2:AP`);
-                const qMin = new google.visualization.Query(`${baseUrl}&sheet=Data_Min&range=N2:R`);
-                
-                Promise.all([
-                    new Promise(res => qVisual.send(res)),
-                    new Promise(res => qData.send(res)),
-                    new Promise(res => qMin.send(res))
-                ]).then(responses => {
-                    let dtVisual = responses[0].getDataTable();
-                    let dtMax = responses[1].getDataTable();
-                    let dtMin = !responses[2].isError() ? responses[2].getDataTable() : null;
-                    let tbody = document.getElementById('pumpTableBody');
-                    let container = document.getElementById('recommendation_container');
-                    tbody.innerHTML = "";
-                    let foundCount = 0;
-                    
-                    for (let i = 0; i < dtMax.getNumberOfRows(); i++) {
-                        let isGradientValid = dtMax.getValue(i, 41);
-                        let n = {
-                            a: Number(dtMax.getValue(i, 29)), b: Number(dtMax.getValue(i, 30)),
-                            c: Number(dtMax.getValue(i, 31)), d: Number(dtMax.getValue(i, 32)), e: Number(dtMax.getValue(i, 33))
-                        };
-                        let m = (dtMin && dtMin.getNumberOfRows() > i) ? {
-                            a: Number(dtMin.getValue(i, 0)), b: Number(dtMin.getValue(i, 1)),
-                            c: Number(dtMin.getValue(i, 2)), d: Number(dtMin.getValue(i, 3)), e: Number(dtMin.getValue(i, 4))
-                        } : null;
-                        
-                        const calcY = (c, x) => (c.a * Math.pow(x, 4)) + (c.b * Math.pow(x, 3)) + (c.c * Math.pow(x, 2)) + (c.d * x) + c.e;
-                        let yMax = calcY(n, cIn);
-                        let yMin = m ? calcY(m, cIn) : 0;
-                        // Jika input masuk dalam range pompa ke-i, tambahkan ke tabel
-                        if (hIn <= (yMax + 0.001) && hIn >= (yMin - 0.5)&& isGradientValid === true) {
-                            foundCount++;
-                            let row = tbody.insertRow();
-                            row.innerHTML = `
-                                <td>${i + 1}</td>
-                                <td>${dtVisual.getValue(i, 0)}</td>
-                                <td>${dtVisual.getValue(i, 1)}</td>
-                                <td>${dtVisual.getValue(i, 2).toFixed(2)}</td>
-                                <td>${dtVisual.getValue(i, 3).toFixed(2)}</td>
-                                <td>${dtVisual.getValue(i, 4).toFixed(2)}</td>
-                                <td>${dtVisual.getValue(i, 5).toFixed(2)}</td>
-                                <td>${dtVisual.getValue(i, 6).toFixed(2)}</td>
-                                <td>${dtVisual.getValue(i, 7).toFixed(2)}</td>
-                                <td>${dtVisual.getValue(i, 8)}</td> 
-                                <td><button onclick="goToPump(${i + 1})" class="btn-view">VIEW</button></td>`;
-                        }
-                    }
-                    container.style.display = foundCount > 0 ? "block" : "none";
-                });
-            }
-
-            // ==========================================
-            // FLOW 3: VISUALISASI (GAMBAR GRAFIK)
-            // ==========================================
-
-            /**
-             * Menggambar kurva performa menggunakan Google LineChart API.
-             * Menghasilkan kurva Max, Min, Rate, dan satu titik segitiga untuk posisi aktual.
-             */
-            function drawCurve(n, m, r, actX, actY) {
-                var data = new google.visualization.DataTable();
-                data.addColumn('number', 'X');
-                data.addColumn('number', 'Maksimum');
-                data.addColumn('number', 'Minimum');
-                data.addColumn('number', 'Rate');
-                data.addColumn('number', 'Actual Point');
-
-                 // Menentukan batas sumbu X dan Y secara dinamis agar grafik tidak terpotong
-                let maxDataLimit = Math.max(n.limitX || 0, m.limitX || 0, r.limitX || 0, actX || 0);
-                let dynamicXMax = maxDataLimit > 0 ? maxDataLimit * 1.1 : 100;
-                let highestPoint = Math.max(n.e || 0, m.e || 0, r.e || 0, actY || 0);
-                let dynamicYMax = Math.max(50, Math.ceil((highestPoint * 1.3) / 10) * 10);
-
-                // Loop untuk membentuk garis kurva dari kumpulan titik-titik (250 langkah)
-                for (var x = 0; x <= dynamicXMax; x += (dynamicXMax / 250)) {
-                    let yN = null, yM = null, yR = null;
-
-                    if (x <= n.limitX) {
-                        yN = (n.a * Math.pow(x, 4)) + (n.b * Math.pow(x, 3)) + (n.c * Math.pow(x, 2)) + (n.d * x) + n.e;
-                    }
-
-                    if (m && m.limitX && x <= m.limitX) {
-                        yM = (m.a * Math.pow(x, 4)) + (m.b * Math.pow(x, 3)) + (m.c * Math.pow(x, 2)) + (m.d * x) + m.e;
-                    }
-
-                    if (r && r.limitX && x <= r.limitX) {
-                        yR = (r.a * Math.pow(x, 4)) + (r.b * Math.pow(x, 3)) + (r.c * Math.pow(x, 2)) + (r.d * x) + r.e;
-                    }
-                    
-                    data.addRow([
-                        x, 
-                        (yN !== null && yN >= 0) ? yN : null, 
-                        (yM !== null && yM >= 0) ? yM : null, 
-                        (yR !== null && yR >= 0) ? yR : null, 
-                        null
-                    ]);
-                }
-
-                // Tambahkan titik aktual (Actual Point) sebagai data point tunggal
-                if (actX > 0 && actY > 0) {
-                    data.addRow([actX, null, null, null, actY]);
-                }
-
-                var options = {
-                    // Konfigurasi tampilan: warna, ketebalan garis, dan desain titik actual
-                    colors: ['#ef4444', '#3b82f6', '#22c55e', '#000000'],
-                    curveType: 'function',
-                    legend: { position: 'bottom' },
-                    lineWidth: 2.5,
-                    series: {
-                        2: { lineDashStyle: [4, 4] }, // Garis Rate putus-putus
-                        3: { pointSize: 12, lineWidth: 0, pointShape: 'triangle', visibleInLegend: true, labelInLegend: 'Actual Point' } // Titik aktual bentuk segitiga
-                    },
-                    chartArea: { width: '92%', height: '80%', top: 20, left: 50 },
-                    hAxis: { 
-                        title: 'Capacity (m³/h)', 
-                        viewWindow: { min: 0, max: dynamicXMax },
-                        gridlines: { count: 12 }
-                    },
-                    vAxis: { 
-                        title: 'Head (m)', 
-                        viewWindow: { min: 0, max: dynamicYMax }
-                    }
-                };
-                new google.visualization.LineChart(document.getElementById('chart_div')).draw(data, options);
-            }
-
-            // ==========================================
-            // FLOW 4: NAVIGASI & PENYIMPANAN
-            // ==========================================
-
-            /**
-             * Navigasi antar baris data (pompa) menggunakan tombol Prev/Next.
-             */
-            function changeGraph(step) {
-                let targetRow = currentRow + step;
-                if (targetRow >= 2 && targetRow <= totalRows) {
-                    currentRow = targetRow;
-                    fetchCoefficients();
-                }
-            }
-
-            /**
-             * Melompat langsung ke nomor pompa tertentu (digunakan oleh tombol VIEW di tabel rekomendasi).
-             */
-            function goToPump(index) {
-                currentRow = index + 1;
-                fetchCoefficients();
-            }
-
-            /**
-             * Menghitung titik potong untuk SEMUA pompa di spreadsheet dan mengirimkan hasilnya secara massal
-             * ke Google Apps Script (Web App) untuk disimpan kembali ke spreadsheet.
-             */
-            function updateAllSheets() {
-                const type = getSelectedType();
-                const btn = document.getElementById('saveBtn');
-                let headIn = parseFloat(document.getElementById('actHeadInput').value) || 0;
-                let lwlIn = parseFloat(document.getElementById('actLWL').value) || 0;
-                let capIn = parseFloat(document.getElementById('actCap').value) || 0;
-                let bowlHead = parseFloat(document.getElementById('actHead').value) || 0; // Dari input readonly
-
-                if (headIn === 0 || capIn === 0) {
-                    alert("Input data belum lengkap!");
-                    return;
-                }
-                
-                btn.innerText = "SAVING...";
-                btn.disabled = true;
-
-                 // Ambil koefisien seluruh pompa untuk perhitungan massal
-                const qData = new google.visualization.Query(`/api/proxy/censv-data?type=${type}&sheet=Data&range=AD:AH`);
-                qData.send(resp => {
-                    if (resp.isError()) { 
-                        btn.disabled = false; btn.innerText = "SAVE TO SHEETS"; 
-                        return; 
-                    }
-                    
-                    let dt = resp.getDataTable();
-                    let bulkData = [];
-                    let slope = (capIn > 0) ? bowlHead / capIn : 0; // Gradien sistem
-
-                    for (let i = 0; i < dt.getNumberOfRows(); i++) {
-                        let n = { a: dt.getValue(i, 0), b: dt.getValue(i, 1), c: dt.getValue(i, 2), d: dt.getValue(i, 3), e: dt.getValue(i, 4) };
-                        let rx = findIntersection(n, slope); // Cari titik potong X
-                        let ry = slope * rx; // Cari titik potong Y
-
-                       // Bagian bulkData.push kirim ke spreadsheet:
-                        bulkData.push({
-                            part1: [
-                                Number(headIn), // Masuk ke AI (35)
-                                Number(lwlIn)   // Masuk ke AJ (36)
-                            ],
-                            part2: [
-                                Number(capIn),       // Masuk ke AL (38)
-                                Number(rx.toFixed(4)), // Masuk ke AM (39)
-                                Number(ry.toFixed(4))  // Masuk ke AN (40)
-                            ],
-                            efficiency: [
-                                Number(document.getElementById('actDens').value), 
-                                Number(document.getElementById('actVisc').value)
-                            ]
-                        });
-                    }
-
-                    // Kirim data ke Google Apps Script via POST
-                    fetch("{{ route('proxy.censv.save') }}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({ 
-                            type: type, 
-                            allData: bulkData 
-                        })
-                    }).then(() => {
-                        alert("Data Berhasil Disimpan!");
-                        btn.innerText = "SAVE TO SHEETS";
-                        btn.disabled = false;
-                    }).catch(err => {
-                        console.error(err);
-                        btn.innerText = "SAVE TO SHEETS";
-                        btn.disabled = false;
-                    });
-                });
-            }
-            document.getElementById('pumpInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    let pN = parseInt(this.value);
-                    if (!isNaN(pN)) {
-                        currentRow = Math.min(Math.max(pN + 1, 2), totalRows);
-                        fetchCoefficients();
-                    }
-                }
-            });
-
-            function calculateBowlHeadRealtime() {
-                let headVal = parseFloat(document.getElementById('actHeadInput').value) || 0;
-                let lwlVal = parseFloat(document.getElementById('actLWL').value) || 0;
-                let result = headVal - lwlVal;
-                document.getElementById('actHead').value = result;
-                updatePoint(); 
-            }
-            window.addEventListener('resize', updatePoint);
-		</script>
-	</body>
+        @vite(['resources/js/cen-sv.js'])
+    </body>
 </html>
