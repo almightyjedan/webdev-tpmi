@@ -1,201 +1,199 @@
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<div x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 bg-white shadow-md">
+<div x-data="{ mobileMenuOpen: false }" class="fixed top-0 w-full z-[100]">
     
-    <div class="bg-[#006BB3] h-[45px] w-full hidden xl:block">
-        <div class="max-w-7xl mx-auto h-full flex justify-end items-center px-4 sm:px-6 lg:px-8 space-x-5">
-            <div class="flex items-center space-x-5">
-                <button class="text-white hover:text-gray-200 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-[22px] w-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+    <div class="bg-white border-b border-gray-100">
+        <div class="max-w-full mx-auto px-6 md:px-8 h-[70px] md:h-[95px] flex items-center">
+            <div class="flex-none">
+                <a href="/">
+                    <img src="{{ asset('images/homepage/topbar_logo_pt_torishima_services_indonesia_2x.webp') }}" 
+                        alt="Torishima Logo" 
+                        class="h-10 md:h-[65px] w-auto transition-all"> 
+                </a>
+            </div>
+
+            <div class="flex-grow"></div>
+
+            <div class="flex items-center space-x-4 md:space-x-8">
+                <div class="hidden md:flex items-center text-purple-900 font-bold text-xl border-r border-gray-200 pr-8">
+                    <a href="#" class="hover:text-blue-600 transition">INA</a>
+                    <span class="mx-2 text-gray-300">-</span>
+                    <a href="#" class="hover:text-blue-600 transition">ENG</a>
+                </div>
+
+                <button class="text-white bg-purple-900 p-1.5 md:p-2 hover:bg-purple-800 rounded-full transition shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </button>
-                <a href="#" class="text-white hover:opacity-80 transition">
-                    <svg class="h-[24px] w-[24px] fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-                <a href="#" class="text-white hover:opacity-80 transition">
-                    <svg class="h-[24px] w-[24px] fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.98 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="#" class="text-white hover:opacity-80 transition">
-                    <svg class="h-[24px] w-[24px] fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
+
+                <button @click="mobileMenuOpen = true" class="text-purple-900 transition">
+                    <svg class="h-9 w-9 md:h-11 md:w-11" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
 
-    <nav class="bg-white border-b border-gray-100 w-full h-[85px]">
-        <div class="max-w-7xl mx-auto h-full flex justify-between items-center px-4 sm:px-6 lg:px-8">
-            
-            <button @click="mobileMenuOpen = true" class="xl:hidden text-[#006BB3] p-2 focus:outline-none">
-                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+    <nav class="bg-gradient-to-r from-[#cccccc] to-[#ffffff] backdrop-blur-md hidden lg:block shadow-lg">
+        <div class="w-full flex items-center">
 
-            <div class="flex items-center">
-                <a href="/">
-                    <img src="{{ asset('images/homepage/topbar_logo_pt_torishima_services_indonesia_2x.webp') }}" 
-                         alt="Torishima Logo" 
-                         class="h-[45px] w-auto"> 
+            <div class="group relative flex-1">
+                <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">
+                    About Us
+                </button>
+                <div class="font-bold absolute left-0 top-full w-full min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
+                    <div class="group/sub relative">
+                        <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px] flex justify-between items-center transition">
+                            OUR STORY
+                            <span>></span>
+                        </a>
+                        <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE OUTLINE</a>
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE PROFILE</a>
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">CORPORATE DATA</a>
+                        </div>
+                    </div>
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CERTIFICATE</a>
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">COMPANY AFFILIATE</a>
+                </div>
+            </div>
+
+            <div class="group relative flex-1">
+                <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">
+                    What We Offer
+                </button>
+                <div class="font-bold absolute left-0 top-full w-full min-w-[280px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
+                    <div class="group/sub relative">
+                        <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px] flex justify-between items-center transition">
+                            PRODUCTS
+                            <span>></span>
+                        </a>
+                        <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CATEGORIES</a>
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">APPLICATIONS AND INDUSTRIES</a>
+                        </div>
+                    </div>
+                    <div class="group/sub relative">
+                        <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px] flex justify-between items-center transition">
+                            SERVICE AND SUPPORT
+                            <span>></span>
+                        </a>
+                        <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">AFTER SALES</a>
+                            <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">PUMP TESTING FACILITY</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative flex-1">
+                <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">
+                    Pump Selector
+                </button>
+                <div class="font-bold absolute left-0 top-full w-full min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">ECO PUMP SELECTOR</a>
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CEN</a>
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">VS-4</a>
+                </div>
+            </div>
+
+            <div class="flex-1">
+                <a href="#" class="block w-full px-4 py-6 text-purple-800 hover:bg-sky-800/60 hover:text-white font-bold uppercase text-base text-center tracking-widest transition duration-300">
+                    QHSE
                 </a>
             </div>
 
-            <div class="hidden xl:flex items-center space-x-9 h-[85px]">
-                <a href="/" class="text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition">Home</a>
-
-                <div class="group relative h-full flex items-center">
-                    <button class="flex items-center text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition">
-                        Corporate Info <svg class="ml-1 w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="absolute left-1/2 -translate-x-1/2 top-[85px] hidden group-hover:block w-64 bg-white border border-gray-100 shadow-2xl z-50 transition-all duration-200">
-                        <div class="py-2">
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">History</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Corporate Data</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Corporate Profile</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Vision Mission & Value</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Certificates</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">CSR</a>
-                        </div>
-                    </div>
+            <div class="group relative flex-1">
+                <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">
+                    Media
+                </button>
+                <div class="font-bold absolute right-0 top-full w-full min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">PRESS RELEASE</a>
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">GALLERY</a>
+                    <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">RECENT PROJECT</a>
                 </div>
-
-                <div class="group relative h-full flex items-center">
-                    <button class="flex items-center text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition text-center leading-tight">
-                        Products & <br> Services <svg class="ml-1 w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="absolute left-1/2 -translate-x-1/2 top-[85px] hidden group-hover:block w-60 bg-white border border-gray-100 shadow-2xl z-50">
-                        <div class="py-2">
-                            <a href="{{ route('products.index') }}" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Products</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Pump Test Facility</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group relative h-full flex items-center">
-                    <button class="flex items-center text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition">
-                        Pump Selector <svg class="ml-1 w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="absolute left-1/2 -translate-x-1/2 top-[85px] hidden group-hover:block w-56 bg-white border border-gray-100 shadow-2xl z-50">
-                        <div class="py-2">
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Pump Selector 1</a>
-                            <a href="{{ route('pumpselector.index') }}" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Pump Selector 2</a>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="#" class="text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition">QHSE</a>
-
-                <div class="group relative h-full flex items-center">
-                    <button class="flex items-center text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition">
-                        Media <svg class="ml-1 w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div class="absolute left-1/2 -translate-x-1/2 top-[85px] hidden group-hover:block w-56 bg-white border border-gray-100 shadow-2xl z-50">
-                        <div class="py-2">
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Press Release</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Gallery</a>
-                            <a href="#" class="block px-6 py-3 text-[13px] text-[#006BB3] hover:bg-blue-50 font-bold uppercase tracking-tight transition">Recent Project</a>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="#" class="text-[15px] font-medium text-[#006BB3] hover:text-blue-800 transition">Contact Us</a>
             </div>
-
-            <button class="xl:hidden text-[#006BB3] p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </button>
         </div>
     </nav>
 
-    <template x-teleport="body">
-        <div x-show="mobileMenuOpen" 
-             x-transition:enter="transition ease-in-out duration-300"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in-out duration-300"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0"
-             class="fixed inset-0 z-[100] xl:hidden" x-cloak>
-            
-            <div @click="mobileMenuOpen = false" class="absolute inset-0 bg-black/50"></div>
+    <div x-show="mobileMenuOpen" 
+         x-cloak
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-105"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-105"
+         class="lg:hidden fixed inset-0 z-[100] bg-white/95 backdrop-blur-lg overflow-y-auto">
+        
+        <div class="sticky top-0 bg-white/80 backdrop-blur-md px-6 md:px-8 h-[70px] md:h-[95px] flex items-center justify-between border-b border-gray-100">
+            <img src="{{ asset('images/homepage/topbar_logo_pt_torishima_services_indonesia_2x.webp') }}" class="h-9 md:h-[55px] w-auto">
+            <button @click="mobileMenuOpen = false" class="p-2 text-purple-900 bg-purple-50 rounded-full hover:bg-purple-100 transition">
+                <svg class="h-7 w-7 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
 
-            <div x-show="mobileMenuOpen"
-                 x-transition:enter="transition ease-in-out duration-300 transform"
-                 x-transition:enter-start="-translate-x-full"
-                 x-transition:enter-end="translate-x-0"
-                 x-transition:leave="transition ease-in-out duration-300 transform"
-                 x-transition:leave-start="translate-x-0"
-                 x-transition:leave-end="-translate-x-full"
-                 class="relative w-[80%] max-w-sm h-full bg-white shadow-xl flex flex-col overflow-y-auto">
-                
-                <div class="p-4 flex justify-between items-center border-b border-gray-100">
-                    <span class="font-bold text-[#006BB3]">MENU</span>
-                    <button @click="mobileMenuOpen = false" class="text-gray-500">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        <div class="px-6 md:px-8 py-10 pb-24">
+            <div x-data="{ activeMenu: null }" class="space-y-6">
+                <div class="space-y-4">
+                    <button @click="activeMenu === 1 ? activeMenu = null : activeMenu = 1" 
+                            class="flex items-center justify-between w-full">
+                        <span class="text-xl md:text-2xl font-bold tracking-tighter" :class="activeMenu === 1 ? 'text-sky-600' : 'text-purple-900'">ABOUT US</span>
+                        <span class="text-sky-600 font-light text-2xl md:text-3xl" x-text="activeMenu === 1 ? '−' : '+'"></span>
                     </button>
+                    <div x-show="activeMenu === 1" x-collapse>
+                        <div class="grid gap-4 pl-2 py-2 border-l-2 border-sky-600 mt-2 text-sm md:text-lg">
+                            <a href="#" class="font-bold text-gray-800">OUR STORY</a>
+                            <div class="flex flex-col gap-2 pl-4 text-gray-500 italic">
+                                <a href="#">• Corporate Outline</a>
+                                <a href="#">• Corporate Profile</a>
+                                <a href="#">• Corporate Data</a>
+                            </div>
+                            <a href="#" class="font-bold text-gray-800">CERTIFICATE</a>
+                            <a href="#" class="font-bold text-gray-800">COMPANY AFFILIATE</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="px-4 py-6 space-y-2">
-                    <a href="/" class="block py-3 text-[#006BB3] font-bold border-b border-gray-50">HOME</a>
-                    
-                    <div x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full py-3 text-[#006BB3] font-bold border-b border-gray-50 uppercase text-left">
-                            Corporate Info <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div x-show="open" class="bg-gray-50 pl-4 py-2 space-y-2">
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">HISTORY</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">CORPORATE DATA</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">CORPORATE PROFILE</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">VISION MISSION & VALUE</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">CERTIFICATES</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">CSR</a>
+                <div class="space-y-4 pt-4 border-t border-gray-50">
+                    <button @click="activeMenu === 2 ? activeMenu = null : activeMenu = 2" 
+                            class="flex items-center justify-between w-full">
+                        <span class="text-xl md:text-2xl font-bold tracking-tighter" :class="activeMenu === 2 ? 'text-sky-600' : 'text-purple-900'">WHAT WE OFFER</span>
+                        <span class="text-sky-600 font-light text-2xl md:text-3xl" x-text="activeMenu === 2 ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="activeMenu === 2" x-collapse>
+                        <div class="grid gap-6 pl-2 py-2 border-l-2 border-sky-600 mt-2 text-sm md:text-lg">
+                            <div>
+                                <p class="text-[10px] font-black text-sky-900 tracking-widest uppercase mb-3 underline decoration-sky-200">Products</p>
+                                <div class="flex flex-col gap-3 font-bold text-gray-700">
+                                    <a href="#">CATEGORIES</a>
+                                    <a href="#">APPLICATIONS & INDUSTRIES</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full py-3 text-[#006BB3] font-bold border-b border-gray-50 uppercase text-left">
-                            Products & Services <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div x-show="open" class="bg-gray-50 pl-4 py-2 space-y-2">
-                            <a href="{{ route('products.index') }}" class="block py-2 text-sm text-[#006BB3] font-bold">PRODUCTS</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">PUMP TEST FACILITY</a>
-                        </div>
-                    </div>
+                <div class="pt-4 border-t border-gray-50">
+                    <a href="#" class="text-xl md:text-2xl font-bold text-purple-900 tracking-tighter block py-2">QHSE</a>
+                </div>
+                <div class="pt-4 border-t border-gray-50">
+                    <a href="#" class="text-xl md:text-2xl font-bold text-purple-900 tracking-tighter block py-2">MEDIA</a>
+                </div>
 
-                    <div x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full py-3 text-[#006BB3] font-bold border-b border-gray-50 uppercase text-left">
-                            Pump Selector <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div x-show="open" class="bg-gray-50 pl-4 py-2 space-y-2">
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">PUMP SELECTOR 1</a>
-                            <a href="{{ route('pumpselector.index') }}" class="block py-2 text-sm text-[#006BB3] font-bold">PUMP SELECTOR 2</a>
-                        </div>
-                    </div>
-
-                    <a href="#" class="block py-3 text-[#006BB3] font-bold border-b border-gray-50 uppercase">QHSE</a>
-
-                    <div x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full py-3 text-[#006BB3] font-bold border-b border-gray-50 uppercase text-left">
-                            Media <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
-                        </button>
-                        <div x-show="open" class="bg-gray-50 pl-4 py-2 space-y-2">
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">PRESS RELEASE</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">GALLERY</a>
-                            <a href="#" class="block py-2 text-sm text-[#006BB3] font-bold">RECENT PROJECT</a>
-                        </div>
-                    </div>
-
-                    <a href="#" class="block py-3 text-[#006BB3] font-bold border-b border-gray-50 uppercase">CONTACT US</a>
-
-                    <div class="pt-8 flex items-center space-x-6">
-                        <a href="#" class="text-[#006BB3] hover:opacity-80"><svg class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                        <a href="#" class="text-[#006BB3] hover:opacity-80"><svg class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.98 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                        <a href="#" class="text-[#006BB3] hover:opacity-80"><svg class="h-[24px] w-[24px] fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                <div class="pt-10">
+                    <div class="inline-flex p-1 bg-gray-100 rounded-full">
+                        <a href="#" class="px-5 py-2 rounded-full bg-purple-900 text-white font-bold text-xs">INA</a>
+                        <a href="#" class="px-5 py-2 rounded-full text-gray-500 font-bold text-xs">ENG</a>
                     </div>
                 </div>
             </div>
         </div>
-    </template>
+    </div>
 </div>
+
+<div class="h-[70px] md:h-[95px] xl:h-[180px]"></div>

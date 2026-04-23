@@ -6,15 +6,24 @@ use App\Models\User;
 use App\Models\Industry;
 use App\Models\PumpType;
 use App\Models\DetailPump;
+use App\Models\News;
+use App\Models\Project;
+use App\Models\Comments;
 use App\Models\CategoryPump;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        $faker = Faker::create('id_ID');
+
+        // ==========================================
+        // 1. SEEDER PUMP
+        // ==========================================
         User::updateOrCreate(
             ['email' => 'admin@admin.com'],
             ['name' => 'Admin Torishima', 'password' => Hash::make('admin')]
@@ -81,6 +90,50 @@ class DatabaseSeeder extends Seeder
                         }
                     }
                 }
+            }
+        }
+
+        // ==========================================
+        // 2. SEEDER PROJECTS
+        // ==========================================
+        for ($i = 1; $i <= 10; $i++) {
+            \App\Models\Project::create([
+                'main_title'  => 'Main Project ' . $i,
+                'title'       => 'Sub Title: ' . $faker->sentence(3),
+                'description' => $faker->paragraph(4),
+                'images'      => [
+                    'project-img-1.jpg',
+                    'project-img-2.jpg',
+                    'project-img-3.jpg'
+                ],
+                
+                'created_at'  => now()->subDays(rand(1, 100)),
+            ]);
+        }
+        // ==========================================
+        // 3. SEEDER NEWS & COMMENTS
+        // ==========================================
+        for ($i = 1; $i <= 10; $i++) {
+            $newsTitle = $faker->sentence(6);
+            
+            $news = \App\Models\News::create([
+                'image'       => 'news-dummy-' . $i . '.jpg',
+                'title'       => $newsTitle,
+                'slug'        => \Illuminate\Support\Str::slug($newsTitle),
+                'description' => '<p>' . implode('</p><p>', $faker->paragraphs(5)) . '</p>',
+                'posted_by'   => $faker->name(),
+                'posted_at'   => now()->subDays(rand(1, 30))->format('Y-m-d'),
+                'created_at'  => now()->subDays(31),
+            ]);
+
+            // Comments
+            for ($j = 1; $j <= 10; $j++) {
+                \App\Models\Comments::create([
+                    'news_id'      => $news->id,
+                    'user_name'    => $faker->name(),
+                    'comment_text' => $faker->sentence(10),
+                    'created_at'   => now()->subDays(rand(1, 20)),
+                ]);
             }
         }
     }

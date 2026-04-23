@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Project extends Model
+{
+    protected $fillable = [
+        'main_title',
+        'title',
+        'description',
+        'images',
+    ];
+
+    protected $casts = [
+        'images' => 'array',
+    ];
+}

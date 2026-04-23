@@ -1,487 +1,348 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Torishima Pump Mfg. Indonesia</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        </head>
-    <body class="antialiased font-sans bg-gray-50">
-
-        @include('layouts.partials.navbar') 
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Torishima Pump Mfg. Indonesia</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	</head>
+	<body>
+		@include('layouts.partials.navbar')
+		<section class="relative h-[450px] overflow-hidden">
+			<video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+				<source src="{{ asset('images/homepage/ANIMASI-TORISHIMA-525px.mp4') }}" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+				<!-- <h1 class="text-white text-5xl font-light italic tracking-widest">TORISHIMA</h1> -->
+			</div>
+		</section>
+		<div class="px-6 py-6">
+			<p class="text-right text-purple-900 italic font-semibold text-xl">
+				Welcome to Torishima Pump Mfg. Indonesia, let's get you started!
+			</p>
+		</div>
+<section class="w-full py-10 overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         
-        <main class="relative w-full h-screen lg:h-[calc(100vh-130px)] flex items-center overflow-hidden">
+        <div class="relative bg-blue-100 h-64 md:h-80 lg:h-[400px] flex items-center justify-center border border-gray-200 w-full">
+            <img src="{{ asset('images/.jpeg') }}" alt="photo 1" class="absolute inset-0 w-full h-full object-cover">
+
+            <div class="absolute -bottom-20 right-0 lg:-right-20 w-[250px] md:w-[350px] lg:w-[450px] z-10" 
+                style="-webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); 
+                mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);">
+                <img src="{{ asset('images/homepage/water-splash.webp') }}" alt="No Fluid No Life" class="w-full h-auto block">
+                <p class="absolute inset-0 flex items-center justify-center text-white font-black italic text-lg md:text-2xl uppercase tracking-tighter drop-shadow-lg">
+                    No Fluid, No Life
+                </p>
+            </div>
+        </div>
+
+        <div class="px-6 md:px-12 lg:px-20 xl:px-36">
+            <p class="text-base md:text-lg lg:text-xl leading-relaxed text-justify text-gray-800">
+                Torishima Pump Mfg. Indonesia is a company manufacturing pumps and pumping system, including standard and custom. Our solutions are engineered in response to the challenge of the industry. By using state-of-the-art manufacturing facilities, PT. Torishima Pump Mfg. Indonesia is capable of producing world-class industrial pump product ranges including End Suction, Multi-Stage High Pressure, Double Suction and Vertical Mixed Flow Pumps.
+            </p>
+        </div>
+        
+    </div>
+</section>
+
+<section class="w-full py-10 pt-20 md:pt-40 lg:py-16 lg:pt-60 overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 items-center">
+        
+        <div class="px-6 md:px-12 lg:px-20 xl:px-36 order-2 lg:order-1">
+            <div class="text-left">
+                <h3 class="text-purple-900 font-bold text-xl md:text-2xl mb-2 italic">VISION</h3>
+                <p class="text-lg md:text-xl text-gray-700 leading-tight">
+                    To be recognized as a world-class pump manufacturer company committed to excellence.
+                </p>
+            </div>
+            <div class="text-right pr-0 md:pr-10 mt-10">
+                <h3 class="text-purple-900 font-bold text-xl md:text-2xl mb-2 italic">MISSION</h3>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    We Develop, manufacture and provide high quality industrial pumps to satisfy customer requirement in infrastructure and industry for domestic and international market.
+                </p>
+            </div>
+        </div>
+
+        <div class="relative w-full h-64 md:h-80 lg:h-[450px] bg-[#D3E3D3] flex items-center justify-center border-l-0 lg:border-l border-gray-200 order-1 lg:order-2">
             
-            <div class="absolute inset-0 z-0">
-                <video autoplay muted loop playsinline class="w-full h-auto">
-                    <source src="{{ asset('images/homepage/.webp') }}" type="video/webp">
-                    <source src="{{ asset('images/homepage/ANIMASI-TORISHIMA-525px.mp4') }}" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute -top-20 right-0 md:-top-40 md:right-20 lg:-top-60 lg:right-20 w-[250px] md:w-[350px] lg:w-[450px] z-[-1] pointer-events-none lg:translate-x-12">
+                <img src="{{ asset('images/homepage/purple-art.webp') }}" alt="Art Decor" class="w-full h-auto">
             </div>
 
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-20 lg:mt-32">
+            <div class="relative z-10 flex items-center justify-center w-full h-full">
+                <img src="{{ asset('images/.jpeg') }}"
+                alt="photo 2"
+                class="absolute inset-0 w-full h-full object-cover">
+            </div>
+        </div>
+
+    </div>
+</section>
+		
+<section class="w-full px-6 md:px-12 lg:px-20 xl:px-36 py-10 lg:py-16">
+    <div class="text-right">
+        <h4 class="text-purple-900 font-bold italic text-xl md:text-2xl mb-8">Our Solutions</h4>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-10 items-start">
+        
+        <div class="w-full lg:w-3/4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            @php
+            $solutions = [
+                'Water Works & Environment', 'Construction & Utility', 'Oil and Gas', 'General Industry',
+                'Marine', 'Energy Industry', 'Chemical Industry'
+            ];
+            @endphp
+            @foreach($solutions as $item)
+            <div class="bg-[#D3E3D3] p-4 md:p-5 min-h-[160px] md:min-h-[200px] flex flex-col justify-between shadow-sm transition hover:scale-105 border border-gray-100">
+                <span class="text-sm md:text-base lg:text-[15px] xl:text-lg font-bold text-blue-900 leading-tight uppercase">
+                    {{ $item }}
+                </span>
+                <a href="#" class="text-xs md:text-sm text-right font-black text-blue-900 uppercase tracking-tighter mt-4">
+                    Explore &rarr;
+                </a>
+            </div>
+            @endforeach
+        </div>
+
+        <div class="w-full lg:w-1/4 flex justify-center lg:justify-end">
+            <div class="w-40 h-40 md:w-56 md:h-56 lg:w-full">
+                <img src="{{ asset('images/homepage/solutions-chart.png') }}" alt="Solutions Distribution" class="w-full h-auto object-contain">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="w-full py-10 lg:py-16 overflow-hidden">
+    <div class="px-6 md:px-12 lg:px-20 xl:px-36 mb-8">
+        <h2 class="text-purple-900 font-bold italic text-2xl md:text-3xl uppercase tracking-tighter">
+            Latest Project
+        </h2>
+    </div>
+
+    <div class="w-full bg-[#D9E3EB] py-10 lg:py-12">
+        <div class="px-6 md:px-12 lg:px-20 xl:px-36">
+            <div class="flex flex-col lg:flex-row gap-6 items-stretch">
                 
-                <div class="flex flex-col space-y-6">
-                    
-                    <!-- <div class="w-full max-w-[280px] lg:max-w-[350px] opacity-93">
-                        <div class="bg-white backdrop-blur-sm p-6 lg:p-8 rounded-tr-[50px] rounded-bl-[50px] shadow-2xl">
-                            <img src="{{ asset('images/homepage/zone_1_img2.webp') }}" 
-                                alt="Evolution Teamwork Diversity" 
-                                class="w-full h-auto">
-                        </div>
-                    </div> -->
+                <div class="flex-1 overflow-hidden"> 
+                    <div class="swiper projectSwiper">
+                        <div class="swiper-wrapper">
+                            @foreach($projects as $project)
+                            <div class="swiper-slide">
+                                <div class="relative group h-60 md:h-72 lg:h-60 overflow-hidden border-4 border-purple-900 bg-white">
+                                    @if($project->images && count($project->images) > 0)
+                                        <img src="{{ url('storage/' . $project->images[0]) }}" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-gray-300 flex items-center justify-center">No Image</div>
+                                    @endif
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 shadow-2xl rounded-2xl overflow-hidden max-w-5xl">
-                        
-                        <div class="bg-[#006BB3] p-8 text-white border-r border-white/10 group hover:bg-[#005a96] transition-colors">
-                            <div class="flex flex-col">
-                                <div class="mb-4">
-                                    <svg class="w-10 h-10 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3 tracking-tight">Power Generation</h3>
-                                <p class="text-[13px] leading-relaxed opacity-90 font-light">
-                                    Torishima pumps are highly engineered for the most demanding services in thermal, geothermal, and renewable power plants.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="bg-[#0081D6] p-8 text-white border-r border-white/10 group hover:bg-[#0073c0] transition-colors">
-                            <div class="flex flex-col">
-                                <div class="mb-4">
-                                    <svg class="w-10 h-10 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3 tracking-tight">Waterworks</h3>
-                                <p class="text-[13px] leading-relaxed opacity-90 font-light">
-                                    Provides reliable and high-efficiency pumps for every critical stage of the water cycle: Raw Water Intake, Treatment, and Flood Control.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="bg-[#00558E] p-8 text-white group hover:bg-[#004a7c] transition-colors">
-                            <div class="flex flex-col">
-                                <div class="mb-4">
-                                    <svg class="w-10 h-10 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                                        <path d="M12 12v.01M12 15v.01M12 18v.01"></path>
-                                    </svg>
-                                </div>
-                                <h3 class="text-xl font-bold mb-3 tracking-tight">Oil & Gas</h3>
-                                <p class="text-[13px] leading-relaxed opacity-90 font-light">
-                                    Standardized and customizable pumps that ensure critical processes run reliably, from clean water to abrasive slurries.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </main>
-
-        <section class="bg-white py-16 lg:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center mb-16">
-                    <h2 class="text-[#006BB3] text-3xl lg:text-4xl font-bold uppercase tracking-wider">
-                        Welcome to PT Torishima Pump Mfg Indonesia
-                    </h2>
-                    <div class="w-24 h-1 bg-[#0081D6] mx-auto mt-4"></div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                    
-                    <div class="lg:col-span-4 space-y-8">
-                        <div class="relative p-6 border-l-4 border-[#006BB3] bg-gray-50 rounded-r-xl shadow-sm">
-                            <div class="absolute -left-3 top-6 bg-[#006BB3] text-white p-1 rounded-full">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path></svg>
-                            </div>
-                            <p class="text-gray-700 italic font-medium leading-relaxed">
-                                "To be recognized as a world class pump manufacture company committed to excellence."
-                            </p>
-                            <p class="text-[#006BB3] text-sm font-bold mt-3 uppercase tracking-tighter">- Vision of PT. Torishima Pump Mfg. Indonesia</p>
-                        </div>
-
-                        <div class="relative p-6 border-l-4 border-[#0081D6] bg-gray-50 rounded-r-xl shadow-sm">
-                            <div class="absolute -left-3 top-6 bg-[#0081D6] text-white p-1 rounded-full">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path></svg>
-                            </div>
-                            <p class="text-gray-700 font-semibold leading-relaxed">
-                                We Develop, manufacture and provide high quality industrial pumps to satisfy customer requirement in infrastructure and industry for domestic and international market.
-                            </p>
-                            <p class="text-[#0081D6] text-sm font-bold mt-3 uppercase tracking-tighter">- Mission of PT. Torishima Pump Mfg. Indonesia</p>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-8">
-                        <div class="prose prose-blue max-w-none text-gray-600 leading-loose">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2 inline-block">About Us / History</h3>
-                            
-                            <p class="mb-6">
-                                PT. Torishima Pump Mfg. Indonesia is a joint venture between Torishima Pump Mfg., Co., Ltd of Japan and PT Guna Elektro of Indonesia. Known as PT Torishima Guna Indonesia since its establishment in 1984, has been serving a wide range of product requirements and customers – from handling clean water system to handling high slurry content liquid; from installing cooling and heating facilities in high rise buildings to providing pump systems in remote areas.
-                            </p>
-
-                            <p class="mb-6">
-                                In the industries known for its demand of excellent services, PT. Torishima Pump Mfg. Indonesia holds great pride of being widely acknowledged as the reliable pump manufacturer. As a learning organization, our capabilities are strengthened with corporate culture in continuous improvement and a commitment to excellence.
-                            </p>
-
-                            <p class="mb-6">
-                                PT. Torishima Pump Mfg. Indonesia has established strong sales and distribution network by building dealerships and other sales channels, which in turn can serve all our customer’s need. PT. Torishima Pump Mfg. Indonesia is currently distributing both standard and tailor-made industrial pumps not only in the Indonesian market but also throughout the South East Asia Region.
-                            </p>
-
-                            <div class="bg-[#006BB3]/5 p-6 rounded-xl border border-[#006BB3]/10 italic text-[14px]">
-                                In compliance with Torishima’s policy, we provide international warranty service that is provided for every product. We realize that the cornerstone of our success lies in our total dedication to ensuring our customer’s satisfaction. We are confident that, in an ever-changing environment, our flexibility in service approach, customer focus policy, extensive knowledge of the industry and dependability at all time will continue to position PT. Torishima Pump Mfg. Indonesia as the industry’s preferred business partner in pumps solutions.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 lg:py-24">
-            <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="relative overflow-hidden rounded-[30px] lg:rounded-[50px] shadow-2xl border-4 border-white/50">
-                    <div class="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
-                    <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                        <source src="{{ asset('images/homepage/Centrifugal pump.mp4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-[#D1E9F0] py-16 lg:py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center mb-12">
-                    <h2 class="text-[#0000FF] text-3xl lg:text-4xl font-black uppercase italic tracking-tighter">
-                        OUR VALUE
-                    </h2>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-4 mb-20">
-                    <div class="flex flex-col items-center text-center group cursor-pointer">
-                        <div class="w-12 h-12 mb-3 text-[#006BB3] transition-transform duration-300 group-hover:animate-bounce">
-                            <i data-lucide="trophy" class="w-full h-full"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-800 uppercase text-[20px] mb-1 tracking-widest">Valuable</h4>
-                        <p class="text-[14px] text-gray-600 leading-tight max-w-[130px]">Recognize employees as the most valuable resources.</p>
-                    </div>
-
-                    <div class="flex flex-col items-center text-center group cursor-pointer">
-                        <div class="w-12 h-12 mb-3 text-[#006BB3] transition-transform duration-500 group-hover:rotate-[360deg]">
-                            <i data-lucide="smile" class="w-full h-full"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-800 uppercase text-[20px] mb-1 tracking-widest">Satisfy</h4>
-                        <p class="text-[14px] text-gray-600 leading-tight max-w-[130px]">Committed to total customer satisfaction.</p>
-                    </div>
-
-                    <div class="flex flex-col items-center text-center group cursor-pointer">
-                        <div class="w-12 h-12 mb-3 text-[#006BB3] transition-all duration-300 group-hover:scale-110">
-                            <i data-lucide="clipboard-check" class="w-full h-full"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-800 uppercase text-[20px] mb-1 tracking-widest">Ethic</h4>
-                        <p class="text-[14px] text-gray-600 leading-tight max-w-[130px]">Conduct business ethically.</p>
-                    </div>
-
-                    <div class="flex flex-col items-center text-center group cursor-pointer">
-                        <div class="w-12 h-12 mb-3 text-[#006BB3] transition-all duration-300 group-hover:scale-110">
-                            <i data-lucide="shield-check" class="w-full h-full"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-800 uppercase text-[20px] mb-1 tracking-widest">Safety</h4>
-                        <p class="text-[14px] text-gray-600 leading-tight max-w-[130px]">Protect and maintain a safe environment.</p>
-                    </div>
-
-                    <div class="flex flex-col items-center text-center group cursor-pointer">
-                        <div class="w-12 h-12 mb-3 text-[#006BB3] transition-transform duration-300 group-hover:-translate-y-2">
-                            <i data-lucide="trending-up" class="w-full h-full"></i>
-                        </div>
-                        <h4 class="font-bold text-gray-800 uppercase text-[20px] mb-1 tracking-widest">Improvement</h4>
-                        <p class="text-[14px] text-gray-600 leading-tight max-w-[130px]">Adopt continuous improvement.</p>
-                    </div>
-                </div>
-
-                <div class="mt-20">
-                    <div class="text-center mb-12">
-                        <h2 class="text-[#0000FF] text-3xl lg:text-4xl font-black uppercase italic tracking-tighter">
-                            MANAGEMENT FOCUS
-                        </h2>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                        
-                        <div class="group flex flex-col bg-white/40 backdrop-blur-md p-6 lg:p-8 rounded-[30px] border border-white/50 shadow-lg transition-all duration-500 hover:bg-blue-600 hover:-translate-y-2">
-                            <div class="flex flex-col items-center text-center h-full">
-                                <div class="w-16 h-16 mb-6 bg-white rounded-2xl flex items-center justify-center shadow-md transform transition-transform duration-500 group-hover:rotate-12">
-                                    <i data-lucide="user" class="w-8 h-8 text-blue-600"></i>
-                                </div>
-                                
-                                <h3 class="text-lg font-black text-gray-800 uppercase mb-3 group-hover:text-white transition-colors">
-                                    Corporate Philosophy
-                                </h3>
-                                
-                                <p class="text-xs text-gray-600 leading-relaxed mb-6 group-hover:text-white/90 transition-colors">
-                                    PT Torishima Pump Mfg. Indonesia is firmly committed to contributing to society in total harmony with environmental demands.
-                                </p>
-                                
-                                <div class="mt-auto">
-                                    <a href="#" class="inline-flex items-center text-blue-600 font-bold text-[14px] uppercase tracking-widest group-hover:text-white transition-colors">
-                                        Learn about our Corporate Philosophy
-                                        <i data-lucide="arrow-right" class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1"></i>
-                                    </a>
+                                    <div class="hidden group-hover:flex absolute inset-0 bg-black/70 p-4 flex-col justify-center items-start text-white transition-opacity">
+                                        <h3 class="font-bold text-lg uppercase mb-1 leading-tight">{{ $project->title }}</h3>
+                                        <p class="text-xs mb-4 line-clamp-3">{{ $project->description }}</p>
+                                        <button class="bg-white text-black text-[10px] px-3 py-1 font-bold uppercase">Read More</button>
+                                    </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
+                    </div>
 
-                        <div class="group flex flex-col bg-white/40 backdrop-blur-md p-6 lg:p-8 rounded-[30px] border border-white/50 shadow-lg transition-all duration-500 hover:bg-blue-600 hover:-translate-y-2">
-                            <div class="flex flex-col items-center text-center h-full">
-                                <div class="w-16 h-16 mb-6 bg-white rounded-2xl flex items-center justify-center shadow-md transform transition-transform duration-500 group-hover:-rotate-12">
-                                    <i data-lucide="key" class="w-8 h-8 text-blue-600"></i>
-                                </div>
-                                
-                                <h3 class="text-lg font-black text-gray-800 uppercase mb-3 group-hover:text-white transition-colors">
-                                    Core Competencies
-                                </h3>
-                                
-                                <p class="text-xs text-gray-600 leading-relaxed mb-6 group-hover:text-white/90 transition-colors">
-                                    PT. Torishima Pump Mfg. Indonesia has been manufacturing high quality pumps for more than 35 years. We concentrate our core competences in business sectors to which we bring our considerable know-how and experience.
-                                </p>
-                                
-                                <div class="mt-auto">
-                                    <a href="#" class="inline-flex items-center text-blue-600 font-bold text-[14px] uppercase tracking-widest group-hover:text-white transition-colors">
-                                        Learn about our Core Competencies
-                                        <i data-lucide="arrow-right" class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="group flex flex-col bg-white/40 backdrop-blur-md p-6 lg:p-8 rounded-[30px] border border-white/50 shadow-lg transition-all duration-500 hover:bg-blue-600 hover:-translate-y-2">
-                            <div class="flex flex-col items-center text-center h-full">
-                                <div class="w-16 h-16 mb-6 bg-white rounded-2xl flex items-center justify-center shadow-md transform transition-transform duration-500 group-hover:rotate-12">
-                                    <i data-lucide="settings" class="w-8 h-8 text-blue-600"></i>
-                                </div>
-                                
-                                <h3 class="text-lg font-black text-gray-800 uppercase mb-3 group-hover:text-white transition-colors">
-                                    Experience
-                                </h3>
-                                
-                                <p class="text-xs text-gray-600 leading-relaxed mb-6 group-hover:text-white/90 transition-colors">
-                                    PT. Torishima Pump Mfg. Indonesia has a long experience of the design Pumping system. Our pumps are widely used in Indonesia, full filling customer, requirements effectively throughout the country.
-                                </p>
-                                
-                                <div class="mt-auto">
-                                    <a href="#" class="inline-flex items-center text-blue-600 font-bold text-[14px] uppercase tracking-widest group-hover:text-white transition-colors">
-                                        Learn about our projects.
-                                        <i data-lucide="arrow-right" class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="flex mt-6 space-x-2">
+                        <button class="btn-prev w-8 h-8 rounded-full border border-gray-400 flex items-center justify-center hover:bg-white transition-colors">
+                            <i class="fas fa-chevron-left text-xs text-gray-600"></i>
+                        </button>
+                        <button class="btn-next w-8 h-8 rounded-full border border-gray-400 flex items-center justify-center hover:bg-white transition-colors">
+                            <i class="fas fa-chevron-right text-xs text-gray-600"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="bg-white py-12 border-b border-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-sm font-bold text-gray-700 uppercase tracking-wider">Projects Finished</span>
-                                <span class="text-sm font-bold text-[#006BB3]">50%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#006BB3] h-2.5 rounded-full transition-all duration-1000" style="width: 50%"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-sm font-bold text-gray-700 uppercase tracking-wider">Customer Satisfaction</span>
-                                <span class="text-sm font-bold text-[#0081D6]">99%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-[#0081D6] h-2.5 rounded-full transition-all duration-1000" style="width: 99%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-[13px] leading-relaxed text-gray-600">
-                        <p>
-                            <span class="text-4xl font-bold text-[#006BB3] float-left mr-2 mt-1 leading-none">T</span>
-                            orishima Pump Mfg. Indonesia is a company manufacturing pumps and pumping systems, including standard and custom. Our solutions are engineered in response to the challenge of the industry. By using state-of-the-art manufacturing facilities, PT. Torishima Pump Mfg. Indonesia is capable of producing world-class industrial pump product ranges.
-                        </p>
-                        <p>
-                            PT. Torishima Pump Mfg. Indonesia encourages all employees to constantly upgrade themselves. Relevant product and skill trainings are consistently provided to enable its employees to keep abreast with the latest developments concerning their respected job scope. With this, performance of the staff will always stay competitive and up-to-date.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-[#1a1a1a] py-16 lg:py-24 text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="mb-12">
-                    <h3 class="text-2xl font-bold border-l-4 border-[#0081D6] pl-4 uppercase tracking-wider">Latest Project</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <div class="group relative overflow-hidden rounded-xl bg-gray-800 aspect-[4/3]">
-                        <img src="{{ asset('images/homepage/project1.jpg') }}" alt="Project 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                            <p class="text-sm font-medium tracking-wide">Installation of high-pressure pump system for power plant.</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl bg-gray-800 aspect-[4/3]">
-                        <img src="{{ asset('images/homepage/project2.jpg') }}" alt="Project 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                            <p class="text-sm font-medium tracking-wide">Large scale waterworks infrastructure project.</p>
-                        </div>
-                    </div>
-
-                    <div class="group relative overflow-hidden rounded-xl bg-gray-800 aspect-[4/3]">
-                        <img src="{{ asset('images/homepage/project3.jpg') }}" alt="Project 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                            <p class="text-sm font-medium tracking-wide">Oil & Gas pumping solutions for offshore facilities.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="mt-12 text-center">
-                    <a href="#" class="inline-block px-8 py-3 border border-[#0081D6] text-[#0081D6] hover:bg-[#0081D6] hover:text-white transition-all rounded-full font-bold uppercase text-xs tracking-widest">
-                        View All Projects
+                <div class="w-full lg:w-20 h-16 lg:h-60 flex-shrink-0">
+                    <a href="/projects" class="group relative w-full h-full border-4 border-purple-900 bg-white hover:bg-purple-900 transition-all duration-300 flex items-center justify-center">
+                        <span class="font-bold text-purple-900 group-hover:text-white text-center uppercase tracking-widest text-xs lg:text-[10px] lg:[writing-mode:vertical-lr]">
+                            VIEW MORE
+                        </span>
                     </a>
                 </div>
 
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section class="bg-gray-50 py-16 lg:py-24">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="flex items-end justify-between mb-12">
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-wider inline-block relative">
-                            Recent News
-                            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-blue-600"></span>
-                        </h2>
-                    </div>
-                </div>
+<div class="w-full flex justify-end py-10 lg:py-16 overflow-visible">
+    <section class="relative w-[95%] lg:w-2/3 bg-[#1B5268] text-white min-h-[300px] flex items-center overflow-visible rounded-l-[2rem] shadow-2xl">
+        
+        <div class="absolute inset-y-0 left-0 px-4 w-full md:w-1/2 z-0 pointer-events-none flex items-center opacity-10 md:opacity-30 lg:opacity-100">
+            <img src="{{ asset('images/homepage/map_indonesia.webp') }}" 
+                class="h-1/2 md:h-2/3 lg:h-full w-auto object-contain brightness-0 invert">
+        </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
-                        <div class="relative overflow-hidden aspect-video">
-                            <img src="{{ asset('images/news/news1.jpg') }}" alt="News 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                        
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
-                                Vibration and Noise? Know the Causes and Solution
-                            </h3>
-                            
-                            <div class="flex items-center space-x-4 text-[11px] text-gray-400 mb-4 uppercase font-bold tracking-widest">
-                                <span class="flex items-center"><i data-lucide="calendar" class="w-3 h-3 mr-1"></i> July 10, 2025</span>
-                                <span class="flex items-center"><i data-lucide="message-circle" class="w-3 h-3 mr-1"></i> 0 Comments</span>
-                            </div>
-
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                                Industrial pumps that vibrate and make loud noises not only disrupt operations but can also be an early indication of damage to the...
-                            </p>
-
-                            <div class="mt-auto pt-4 border-t border-gray-100">
-                                <a href="#" class="text-blue-600 text-[11px] font-black uppercase tracking-tighter flex items-center group/btn">
-                                    Read More 
-                                    <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition-transform group-hover/btn:translate-x-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
-                        <div class="relative overflow-hidden aspect-video">
-                            <img src="{{ asset('images/news/news2.jpg') }}" alt="News 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                        
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
-                                E-Waste Management Process | Safe Recycling & Disposal
-                            </h3>
-                            
-                            <div class="flex items-center space-x-4 text-[11px] text-gray-400 mb-4 uppercase font-bold tracking-widest">
-                                <span class="flex items-center"><i data-lucide="calendar" class="w-3 h-3 mr-1"></i> July 1, 2025</span>
-                                <span class="flex items-center"><i data-lucide="message-circle" class="w-3 h-3 mr-1"></i> 0 Comments</span>
-                            </div>
-
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                                Referring to the Ministry of Environment and Forestry's regulation regarding the management of specific waste (e-waste or el...
-                            </p>
-
-                            <div class="mt-auto pt-4 border-t border-gray-100">
-                                <a href="#" class="text-blue-600 text-[11px] font-black uppercase tracking-tighter flex items-center group/btn">
-                                    Read More 
-                                    <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition-transform group-hover/btn:translate-x-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
-                        <div class="relative overflow-hidden aspect-video">
-                            <img src="{{ asset('images/news/news3.jpg') }}" alt="News 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
-                        </div>
-                        
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
-                                PALMEX 2025 – We have upgraded to a bigger space!
-                            </h3>
-                            
-                            <div class="flex items-center space-x-4 text-[11px] text-gray-400 mb-4 uppercase font-bold tracking-widest">
-                                <span class="flex items-center"><i data-lucide="calendar" class="w-3 h-3 mr-1"></i> June 15, 2025</span>
-                                <span class="flex items-center"><i data-lucide="message-circle" class="w-3 h-3 mr-1"></i> 0 Comments</span>
-                            </div>
-
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
-                                We are excited to let you know that Torishima Indonesia will be attending Palmex Exhibition this year in Medan – North Sumat...
-                            </p>
-
-                            <div class="mt-auto pt-4 border-t border-gray-100">
-                                <a href="#" class="text-blue-600 text-[11px] font-black uppercase tracking-tighter flex items-center group/btn">
-                                    Read More 
-                                    <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transition-transform group-hover/btn:translate-x-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-12 text-center">
-                    <a href="#" class="inline-block px-8 py-3 border border-[#0081D6] text-[#0081D6] hover:bg-[#0081D6] hover:text-white transition-all rounded-full font-bold uppercase text-xs tracking-widest">
-                        View All News
+        <div class="relative z-20 w-full px-6 md:px-10 lg:px-20 py-10">
+            <div class="ml-auto w-full md:w-[70%] lg:w-1/2 text-right">
+                <h2 class="text-xl md:text-2xl lg:text-4xl font-serif italic mb-4 leading-tight uppercase tracking-tight">
+                    After-Sales Service
+                </h2>
+                <p class="text-sm md:text-base lg:text-xl pl-0 lg:pl-12 text-gray-100 leading-relaxed mb-6 md:mb-8 text-justify md:text-right">
+                    Our commitment goes beyond the sale. We provide ongoing support, guidance, and solutions to make sure you get the best performance and satisfaction from our product.
+                </p>
+                <div class="flex justify-end">
+                    <a href="#" class="inline-block bg-white text-[#1B5268] px-6 md:px-10 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold shadow-xl hover:scale-105 transition-all uppercase tracking-widest">
+                        LEARN MORE
                     </a>
                 </div>
-
             </div>
-        </section>
-        @include('layouts.partials.footer')
+        </div>
+    </section>
+</div>
 
-        <script src="https://unpkg.com/lucide@latest">lucide.createIcons();</script>
+<section class="w-full flex justify-start py-10 overflow-hidden">
+    <div class="group w-[95%] lg:w-2/3 relative rounded-r-[2rem] overflow-hidden min-h-[450px] md:min-h-[400px] border border-gray-300 shadow-2xl bg-white flex flex-col md:flex-row">
+        
+        <div class="relative w-full md:w-[40%] lg:w-1/3 bg-[#D1DFD6] z-40 p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+            <h3 class="text-[#5D5A88] text-xl md:text-2xl lg:text-3xl font-extrabold leading-tight mb-3 md:mb-4 uppercase tracking-tighter">
+                Unlock powerful performance
+            </h3>
+            <p class="text-[#5D5A88]/80 text-[10px] md:text-xs lg:text-sm font-medium leading-relaxed mb-4 md:mb-6">
+                that exceeds your expectations and preserves the planet
+            </p>
+        </div>
 
-    </body>
-    </html>
+        <div class="relative flex-1 h-[250px] md:h-full overflow-hidden">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                <source src="{{ asset('images/homepage/Centrifugal pump.mp4') }}" type="video/mp4">
+            </video>
+
+            <div class="absolute inset-0 bg-black/40 md:bg-black/50 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+            <div class="absolute inset-0 z-50 flex items-center justify-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <button class="bg-[#FF0000] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg flex items-center space-x-2 shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                    <div class="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-white border-b-[5px] border-b-transparent"></div>
+                    <span class="font-bold text-[10px] md:text-xs uppercase tracking-widest">Watch More</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="px-6 md:px-12 lg:px-20 xl:px-36 py-16 bg-white overflow-hidden">
+    <div class="flex justify-between items-center mb-10">
+        <h2 class="text-[#5D5A88] text-2xl md:text-4xl font-extrabold italic tracking-tighter uppercase">
+            Recent News
+        </h2>
+        <div class="hidden lg:flex space-x-2">
+            <button class="news-prev w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#5D5A88] hover:text-white transition-all">
+                <i class="fas fa-chevron-left text-sm"></i>
+            </button>
+            <button class="news-next w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#5D5A88] hover:text-white transition-all">
+                <i class="fas fa-chevron-right text-sm"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="swiper newsSwiper">
+        <div class="swiper-wrapper">
+            @foreach($news as $n)
+            <div class="swiper-slide h-auto">
+                <div class="bg-[#B8CDDC] p-5 h-full flex flex-col shadow-sm transition-transform hover:-translate-y-1 duration-300 mx-1">
+                    <div class="aspect-video bg-[#7091B1] border border-gray-400/30 flex items-center justify-center mb-4 relative overflow-hidden shadow-inner">
+                        @if($n->image)
+                            <img src="{{ asset('storage/' . $n->image) }}" class="w-full h-full object-cover">
+                        @else
+                            <span class="text-white/40 font-bold text-[10px] tracking-widest uppercase">[PHOTO]</span>
+                        @endif
+                    </div>
+                    <h4 class="text-[#1B5268] text-[14px] font-extrabold leading-tight uppercase mb-2 line-clamp-2">{{ $n->title }}</h4>
+                    <div class="mt-auto">
+                        <a href="#" class="inline-block bg-[#5D5A88] text-white px-4 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-md">Read More</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    <div class="flex lg:hidden justify-center pt-8 space-x-4">
+        <button class="news-prev w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center active:bg-[#5D5A88] active:text-white transition-all">
+            <i class="fas fa-chevron-left text-base"></i>
+        </button>
+        <button class="news-next w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center active:bg-[#5D5A88] active:text-white transition-all">
+            <i class="fas fa-chevron-right text-base"></i>
+        </button>
+    </div>
+</section>
+		@include('layouts.partials.footer')
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const swiper = new Swiper('.projectSwiper', {
+					slidesPerView: 1, // Default HP 1 kolom
+					spaceBetween: 24, // Jarak antar slide (gap-6 di Tailwind itu 24px)
+					loop: false,
+					breakpoints: {
+						640: { slidesPerView: 2 },
+						1024: { slidesPerView: 4 }, // Grid tetap 4 di Desktop
+					},
+					navigation: {
+						nextEl: '.btn-next',
+						prevEl: '.btn-prev',
+					},
+				});
+			});
+
+			const newsSwiper = new Swiper('.newsSwiper', {
+				slidesPerView: 1,
+				spaceBetween: 20, // Diperkecil agar pas di mobile
+				loop: true,
+				grabCursor: true,
+				
+				// Matikan FreeMode jika navigasi tombol tidak jalan presisi
+				// Atau pastikan sticky aktif
+				freeMode: {
+					enabled: true,
+					sticky: true,
+				},
+
+				autoplay: {
+					delay: 3500,
+					disableOnInteraction: false,
+				},
+
+				// Tambahkan ini agar Swiper mendeteksi semua tombol dengan class tersebut
+				navigation: {
+					nextEl: '.news-next',
+					prevEl: '.news-prev',
+				},
+
+				// CRITICAL: Tambahkan observer agar Swiper memantau tombol yang tadinya hidden
+				observer: true,
+				observeParents: true,
+
+				breakpoints: {
+					// Mobile (425px ke atas)
+					425: {
+						slidesPerView: 1.2, // Biar kelihatan ada slide selanjutnya sedikit
+						spaceBetween: 20,
+					},
+					// Tablet (768px)
+					768: {
+						slidesPerView: 2,
+						spaceBetween: 30,
+					},
+					// Laptop (1024px)
+					1024: {
+						slidesPerView: 4,
+						spaceBetween: 30,
+						freeMode: false, // Di laptop matikan freeMode agar navigasi tombol lebih mantap
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

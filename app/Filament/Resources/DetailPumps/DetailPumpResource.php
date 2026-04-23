@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class DetailPumpResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Pump Management';
+    
     protected static ?string $model = DetailPump::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
