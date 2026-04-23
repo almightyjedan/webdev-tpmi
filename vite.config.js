@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/cen-o.js',
                 'resources/js/cen-sv.js',
+                'resources/js/welcome.js'
                 ],
             refresh: true,
         }),

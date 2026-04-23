@@ -16,4 +16,14 @@ class Project extends Model
     protected $casts = [
         'images' => 'array',
     ];
+
+    public function industries()
+    {
+        return $this->belongsToMany(Industry::class, 'project_industry');
+    }
+
+    public function detailPumps()
+    {
+        return $this->belongsToMany(DetailPump::class, 'project_detail_pump');
+    }
 }

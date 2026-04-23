@@ -5,6 +5,7 @@ use App\Http\Controllers\PumpController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 use App\Models\News;
+use App\Models\Industry;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,9 +21,14 @@ Route::get('/', function () {
                 ->latest()
                 ->get();
 
+    // Data untuk Chart Donut
+    $industries = Industry::withCount('projects')->get();
+
     return view('welcome', [
         'projects' => $projects,
-        'news' => $news
+        'news' => $news,
+        'chartLabels' => $industries->pluck('name')->toArray(),
+        'chartData' => $industries->pluck('projects_count')->toArray(),
     ]);
 });
 

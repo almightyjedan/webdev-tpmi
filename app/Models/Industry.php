@@ -10,4 +10,9 @@ class Industry extends Model
         'name',
         'slug',
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_industry');
+    }
 }

@@ -97,18 +97,26 @@ class DatabaseSeeder extends Seeder
         // 2. SEEDER PROJECTS
         // ==========================================
         for ($i = 1; $i <= 10; $i++) {
-            \App\Models\Project::create([
-                'main_title'  => 'Main Project ' . $i,
-                'title'       => 'Sub Title: ' . $faker->sentence(3),
+            $project = \App\Models\Project::create([
+                'main_title'  => 'Project Location ' . $faker->city(),
+                'title'       => 'Industrial Installation: ' . $faker->sentence(3),
                 'description' => $faker->paragraph(4),
                 'images'      => [
                     'project-img-1.jpg',
                     'project-img-2.jpg',
                     'project-img-3.jpg'
                 ],
-                
                 'created_at'  => now()->subDays(rand(1, 100)),
             ]);
+
+            $industries = \App\Models\Industry::inRandomOrder()->take(rand(1, 2))->get();
+            $project->industries()->attach($industries->pluck('id'));
+
+            $relatedPumps = \App\Models\DetailPump::whereHas('industries', function($q) use ($industries) {
+                $q->whereIn('industries.id', $industries->pluck('id'));
+            })->inRandomOrder()->take(rand(2, 4))->pluck('id');
+
+            $project->detailPumps()->attach($relatedPumps);
         }
         // ==========================================
         // 3. SEEDER NEWS & COMMENTS

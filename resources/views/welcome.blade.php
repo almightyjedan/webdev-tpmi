@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 	</head>
 	<body>
 		@include('layouts.partials.navbar')
@@ -93,6 +95,7 @@
     <div class="flex flex-col lg:flex-row gap-10 items-start">
         
         <div class="w-full lg:w-3/4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {{-- Bagian ini tetap sama seperti punya kamu --}}
             @php
             $solutions = [
                 'Water Works & Environment', 'Construction & Utility', 'Oil and Gas', 'General Industry',
@@ -111,9 +114,12 @@
             @endforeach
         </div>
 
-        <div class="w-full lg:w-1/4 flex justify-center lg:justify-end">
-            <div class="w-40 h-40 md:w-56 md:h-56 lg:w-full">
-                <img src="{{ asset('images/homepage/solutions-chart.png') }}" alt="Solutions Distribution" class="w-full h-auto object-contain">
+        <div class="w-full lg:w-1/3 flex flex-col items-center"> {{-- Ubah ke 1/3 --}}
+            <div class="w-full min-h-[400px] flex items-center justify-center"> {{-- Kasih min-height --}}
+                <canvas id="solutionsDonutChart" 
+                    data-labels="{{ json_encode($chartLabels) }}" 
+                    data-values="{{ json_encode($chartData) }}">
+                </canvas>
             </div>
         </div>
 
@@ -278,71 +284,6 @@
     </div>
 </section>
 		@include('layouts.partials.footer')
-
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				const swiper = new Swiper('.projectSwiper', {
-					slidesPerView: 1, // Default HP 1 kolom
-					spaceBetween: 24, // Jarak antar slide (gap-6 di Tailwind itu 24px)
-					loop: false,
-					breakpoints: {
-						640: { slidesPerView: 2 },
-						1024: { slidesPerView: 4 }, // Grid tetap 4 di Desktop
-					},
-					navigation: {
-						nextEl: '.btn-next',
-						prevEl: '.btn-prev',
-					},
-				});
-			});
-
-			const newsSwiper = new Swiper('.newsSwiper', {
-				slidesPerView: 1,
-				spaceBetween: 20, // Diperkecil agar pas di mobile
-				loop: true,
-				grabCursor: true,
-				
-				// Matikan FreeMode jika navigasi tombol tidak jalan presisi
-				// Atau pastikan sticky aktif
-				freeMode: {
-					enabled: true,
-					sticky: true,
-				},
-
-				autoplay: {
-					delay: 3500,
-					disableOnInteraction: false,
-				},
-
-				// Tambahkan ini agar Swiper mendeteksi semua tombol dengan class tersebut
-				navigation: {
-					nextEl: '.news-next',
-					prevEl: '.news-prev',
-				},
-
-				// CRITICAL: Tambahkan observer agar Swiper memantau tombol yang tadinya hidden
-				observer: true,
-				observeParents: true,
-
-				breakpoints: {
-					// Mobile (425px ke atas)
-					425: {
-						slidesPerView: 1.2, // Biar kelihatan ada slide selanjutnya sedikit
-						spaceBetween: 20,
-					},
-					// Tablet (768px)
-					768: {
-						slidesPerView: 2,
-						spaceBetween: 30,
-					},
-					// Laptop (1024px)
-					1024: {
-						slidesPerView: 4,
-						spaceBetween: 30,
-						freeMode: false, // Di laptop matikan freeMode agar navigasi tombol lebih mantap
-					},
-				},
-			});
-		</script>
+        @vite(['resources/js/welcome.js'])
 	</body>
 </html>
