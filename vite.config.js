@@ -8,6 +8,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/cen.js',
                 'resources/js/cen-o.js',
                 'resources/js/cen-sv.js',
                 'resources/js/welcome.js'

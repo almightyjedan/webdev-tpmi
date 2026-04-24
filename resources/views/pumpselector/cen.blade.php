@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <title>CEN-O - Torishima Pump Mfg. Indonesia</title>
+        <title>CEN - Torishima Pump Mfg. Indonesia</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="m-0 p-0 flex flex-col min-h-screen font-['Inter','Segoe_UI',sans-serif] bg-[#f8fafc] box-border 
@@ -84,8 +84,8 @@
                 <button class="bg-[var(--primary)] text-white border-none p-[10px_15px] rounded-[12px] cursor-pointer font-[700] text-[13px] disabled:bg-[#cbd5e1]" id="nextBtn" onclick="changeGraph(1)">NEXT ⇢</button>
             </div>
         </div>
-
+    
         @include('layouts.partials.footer')
-        @vite(['resources/js/cen-o.js'])
+        @vite(['resources/js/cen.js'])
     </body>
 </html>

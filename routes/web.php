@@ -44,9 +44,18 @@ Route::get('/products/{category:slug}', [ProductController::class, 'show'])->nam
 // Pump Selector
 Route::get('/api/pump-data', [PumpController::class, 'getPumpData'])->name('api.pump.data');
 Route::get('/pump-selector', [PumpController::class, 'index'])->name('pumpselector.index');
+
+// CEN
+Route::get('/pump-selector/cen', [PumpController::class, 'cen'])->name('pumpselector.cen');
+Route::get('/api/proxy/cen-data', [PumpController::class, 'getCenData'])->name('proxy.cen.data');
+Route::post('/api/proxy/cen-save', [PumpController::class, 'saveToSheetsCen'])->name('proxy.cen.save');
+
+// CEN-O
 Route::get('/pump-selector/cen-o', [PumpController::class, 'cenO'])->name('pumpselector.ceno');
 Route::get('/api/proxy/ceno-data', [PumpController::class, 'getCenoData'])->name('proxy.ceno.data');
 Route::post('/api/proxy/ceno-save', [PumpController::class, 'saveToSheets'])->name('proxy.ceno.save');
+
+// CEN-SV
 Route::get('/pump-selector/cen-sv', [PumpController::class, 'cenSv'])->name('pumpselector.censv');
 Route::get('/api/proxy/censv-data', [PumpController::class, 'getCensvData'])->name('proxy.censv.data');
 Route::post('/api/proxy/censv-save', [PumpController::class, 'saveToSheetsCensv'])->name('proxy.censv.save');

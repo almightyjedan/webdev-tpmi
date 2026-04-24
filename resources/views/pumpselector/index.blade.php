@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pump Selector</title>
+    <title>Pump Selector - Torishima Pump Mfg. Indonesia</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#D1E9F0] antialiased">
@@ -15,6 +15,11 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <a href="{{ route('pumpselector.cen') }}" class="block p-16 bg-white rounded-[40px] shadow-xl text-center hover:scale-105 transition-transform">
+                <h2 class="text-4xl font-black mb-4">CEN</h2>
+                <p class="text-gray-500">End-Suction Centrifugal Pumps</p>
+            </a>
+
             <a href="{{ route('pumpselector.ceno') }}" class="block p-16 bg-white rounded-[40px] shadow-xl text-center hover:scale-105 transition-transform">
                 <h2 class="text-4xl font-black mb-4">CEN-O</h2>
                 <p class="text-gray-500">End-Suction Centrifugal Pumps</p>

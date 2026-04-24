@@ -12,6 +12,37 @@ class PumpController extends Controller
         return view('pumpselector.index');
     }
 
+    public function cen() {
+        return view('pumpselector.cen');
+    }
+    public function getCenData(Request $request)
+    {
+        $row = $request->query('row', 2);
+        $sheet = $request->query('sheet', 'Data');
+        $range = $request->query('range', 'A:AR');
+        
+        $spreadsheetId = env('ID_CEN');
+        
+        $url = "https://docs.google.com/spreadsheets/d/{$spreadsheetId}/gviz/tq?sheet={$sheet}&range={$range}";
+        
+        $response = Http::get($url);
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'Gagal mengambil data'], 500);
+        }
+
+        return response($response->body())->header('Content-Type', 'text/javascript');
+    }
+
+    public function saveToSheetsCen(Request $request)
+    {
+        $scriptUrl = env('SCRIPT_CEN');
+        
+        $response = Http::post($scriptUrl, $request->all());
+
+        return response()->json(['status' => 'success']);
+    }
+
     public function cenO() {
         return view('pumpselector.cen-o');
     }

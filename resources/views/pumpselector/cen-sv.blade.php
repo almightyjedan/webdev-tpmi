@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <title>CEN-SV - Torishima Pump Mfg. Indonesia</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="m-0 p-0 flex flex-col min-h-screen font-['Inter','Segoe_UI',sans-serif] bg-[#f8fafc] box-border 
@@ -112,6 +113,7 @@
             </div>
         </div>
 
+        @include('layouts.partials.footer')
         @vite(['resources/js/cen-sv.js'])
     </body>
 </html>
