@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 use App\Models\News;
 use App\Models\Industry;
+use App\Models\Banner;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,11 +25,15 @@ Route::get('/', function () {
     // Data untuk Chart Donut
     $industries = Industry::withCount('projects')->get();
 
+    // Banner
+    $banner = Banner::first();
+
     return view('welcome', [
         'projects' => $projects,
         'news' => $news,
         'chartLabels' => $industries->pluck('name')->toArray(),
         'chartData' => $industries->pluck('projects_count')->toArray(),
+        'banner' => $banner,
     ]);
 });
 

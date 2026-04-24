@@ -32,13 +32,20 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         
         <div class="relative bg-blue-100 h-64 md:h-80 lg:h-[400px] flex items-center justify-center border border-gray-200 w-full">
-            <img src="{{ asset('images/.jpeg') }}" alt="photo 1" class="absolute inset-0 w-full h-full object-cover">
+            @if($banner && $banner->photo_1)
+                <img src="{{ Storage::url($banner->photo_1) }}" alt="photo 1" class="absolute inset-0 w-full h-full object-cover">
+            @else
+                <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                    <span class="text-gray-400">No Image Uploaded</span>
+                </div>
+            @endif
 
-            <div class="absolute -bottom-20 right-0 lg:-right-20 w-[250px] md:w-[350px] lg:w-[450px] z-10" 
-                style="-webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); 
-                mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);">
-                <img src="{{ asset('images/homepage/water-splash.webp') }}" alt="No Fluid No Life" class="w-full h-auto block">
-                <p class="absolute inset-0 flex items-center justify-center text-white font-black italic text-lg md:text-2xl uppercase tracking-tighter drop-shadow-lg">
+            <div class="absolute -bottom-20 md:-bottom-28 sm:-bottom-32 right-0 lg:-right-44 w-[250px] md:w-[350px] lg:w-[450px] z-10">
+                <div class="relative w-full h-full" style="-webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent); mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);">
+                    <img src="{{ asset('images/homepage/water-splash.webp') }}" alt="Water Splash" class="w-full h-auto block">
+                </div>
+
+                <p class="absolute inset-0 flex items-center justify-center text-white font-black italic text-lg md:text-2xl uppercase tracking-tighter drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] z-20">
                     No Fluid, No Life
                 </p>
             </div>
@@ -78,9 +85,13 @@
             </div>
 
             <div class="relative z-10 flex items-center justify-center w-full h-full">
-                <img src="{{ asset('images/.jpeg') }}"
-                alt="photo 2"
-                class="absolute inset-0 w-full h-full object-cover">
+                @if($banner && $banner->photo_2)
+                    <img src="{{ Storage::url($banner->photo_2) }}" alt="photo 2" class="absolute inset-0 w-full h-full object-cover">
+                @else
+                    <div class="absolute inset-0 flex items-center justify-center bg-gray-200">
+                        <span class="text-gray-400">No Image Uploaded</span>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -95,7 +106,6 @@
     <div class="flex flex-col lg:flex-row gap-10 items-start">
         
         <div class="w-full lg:w-3/4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {{-- Bagian ini tetap sama seperti punya kamu --}}
             @php
             $solutions = [
                 'Water Works & Environment', 'Construction & Utility', 'Oil and Gas', 'General Industry',
