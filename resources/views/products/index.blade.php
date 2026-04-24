@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Torishima Indonesia</title>
+    <title>Products - Torishima Pump Mfg. Indonesia</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white">
-
-    <nav class="bg-white border-b py-6 px-8 flex justify-between items-center">
-        <a href="/" class="text-2xl font-black text-blue-900 italic">TORISHIMA</a>
-        <div class="space-x-6 text-sm font-bold uppercase">
-            <a href="/" class="text-gray-400">Home</a>
-            <a href="/products" class="text-blue-900 border-b-2 border-red-600">Products</a>
-        </div>
-    </nav>
+    @include('layouts.partials.navbar')
 
     <main class="max-w-7xl mx-auto px-4 py-12">
         
@@ -73,5 +66,6 @@
 
     </main>
 
+    @include('layouts.partials.footer')
 </body>
 </html>

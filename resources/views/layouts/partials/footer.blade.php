@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <footer class="bg-gradient-to-r from-[#cccccc] to-[#ffffff] py-12 lg:py-16 border-t border-gray-300">
     <div class="w-full px-6 md:px-12 lg:px-20 xl:px-36">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 items-start">
