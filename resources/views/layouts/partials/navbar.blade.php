@@ -38,7 +38,7 @@
                 <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">About Us</button>
                 <div class="font-bold absolute left-0 top-full w-full min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
                     <div class="group/sub relative border-b border-white/10">
-                        <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">OUR STORY <span>></span></a>
+                        <a class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">OUR STORY <span>></span></a>
                         <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
                             <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE OUTLINE</a>
                             <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE PROFILE</a>
@@ -54,14 +54,14 @@
                 <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">What We Offer</button>
                 <div class="font-bold absolute left-0 top-full w-full min-w-[280px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
                     <div class="group/sub relative border-b border-white/10">
-                        <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">PRODUCTS <span>></span></a>
+                        <a class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">PRODUCTS <span>></span></a>
                         <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
                             <a href="{{ route('products.index') }}" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CATEGORIES</a>
                             <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">APPLICATIONS AND INDUSTRIES</a>
                         </div>
                     </div>
                     <div class="group/sub relative">
-                        <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">SERVICE AND SUPPORT <span>></span></a>
+                        <a class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">SERVICE AND SUPPORT <span>></span></a>
                         <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
                             <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">AFTER SALES</a>
                             <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">PUMP TESTING FACILITY</a>
