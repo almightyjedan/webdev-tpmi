@@ -15,14 +15,20 @@
 	<body>
 		@include('layouts.partials.navbar')
 		<section class="relative h-[450px] overflow-hidden">
-			<video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-				<source src="{{ asset('images/homepage/ANIMASI-TORISHIMA-525px.mp4') }}" type="video/mp4">
-				Your browser does not support the video tag.
-			</video>
-			<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-				<!-- <h1 class="text-white text-5xl font-light italic tracking-widest">TORISHIMA</h1> -->
-			</div>
-		</section>
+            @if($banner && $banner->video_1)
+                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                    <source src="{{ asset('storage/' . $banner->video_1) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            @else
+                <!-- <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                    <source src="{{ asset('images/homepage/ANIMASI-TORISHIMA-525px.mp4') }}" type="video/mp4">
+                </video> -->
+            @endif
+            
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                </div>
+        </section>
 		<div class="px-6 py-6">
 			<p class="text-right text-purple-900 italic font-semibold text-xl">
 				Welcome to Torishima Pump Mfg. Indonesia, let's get you started!
@@ -232,9 +238,16 @@
         </div>
 
         <div class="relative flex-1 h-[250px] md:h-full overflow-hidden">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-                <source src="{{ asset('images/homepage/Centrifugal pump.mp4') }}" type="video/mp4">
-            </video>
+            @if($banner && $banner->video_2)
+                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                    <source src="{{ asset('storage/' . $banner->video_2) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            @else
+                <!-- <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+                    <source src="{{ asset('images/homepage/Centrifugal pump.mp4') }}" type="video/mp4">
+                </video> -->
+            @endif
 
             <div class="absolute inset-0 bg-black/40 md:bg-black/50 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
             <div class="absolute inset-0 z-50 flex items-center justify-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-500">
