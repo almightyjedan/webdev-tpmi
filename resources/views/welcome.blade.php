@@ -59,7 +59,7 @@
 
         <div class="px-6 md:px-12 lg:px-20 xl:px-36">
             <p class="text-base md:text-lg lg:text-xl leading-relaxed text-justify text-gray-800">
-                Torishima Pump Mfg. Indonesia is a company manufacturing pumps and pumping system, including standard and custom. Our solutions are engineered in response to the challenge of the industry. By using state-of-the-art manufacturing facilities, PT. Torishima Pump Mfg. Indonesia is capable of producing world-class industrial pump product ranges including End Suction, Multi-Stage High Pressure, Double Suction and Vertical Mixed Flow Pumps.
+                {{ $banner->text1 ?? 'No Text Inputted' }}
             </p>
         </div>
         
@@ -73,13 +73,13 @@
             <div class="text-left">
                 <h3 class="text-purple-900 font-bold text-xl md:text-2xl mb-2 italic">VISION</h3>
                 <p class="text-lg md:text-xl text-gray-700 leading-tight">
-                    To be recognized as a world-class pump manufacturer company committed to excellence.
+                    {{ $banner->vision ?? 'No Text Inputted' }}
                 </p>
             </div>
             <div class="text-right pr-0 md:pr-10 mt-10">
                 <h3 class="text-purple-900 font-bold text-xl md:text-2xl mb-2 italic">MISSION</h3>
                 <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    We Develop, manufacture and provide high quality industrial pumps to satisfy customer requirement in infrastructure and industry for domestic and international market.
+                    {{ $banner->mission ?? 'No Text Inputted' }}
                 </p>
             </div>
         </div>
@@ -130,8 +130,8 @@
             @endforeach
         </div>
 
-        <div class="w-full lg:w-1/3 flex flex-col items-center"> {{-- Ubah ke 1/3 --}}
-            <div class="w-full min-h-[400px] flex items-center justify-center"> {{-- Kasih min-height --}}
+        <div class="w-full lg:w-1/3 flex flex-col items-center">
+            <div class="w-full min-h-[400px] flex items-center pt-10 justify-center">
                 <canvas id="solutionsDonutChart" 
                     data-labels="{{ json_encode($chartLabels) }}" 
                     data-values="{{ json_encode($chartData) }}">
@@ -213,7 +213,7 @@
                     After-Sales Service
                 </h2>
                 <p class="text-sm md:text-base lg:text-xl pl-0 lg:pl-12 text-gray-100 leading-relaxed mb-6 md:mb-8 text-justify md:text-right">
-                    Our commitment goes beyond the sale. We provide ongoing support, guidance, and solutions to make sure you get the best performance and satisfaction from our product.
+                    {{ $banner->after_sales ?? 'No Text Inputted' }}
                 </p>
                 <div class="flex justify-end">
                     <a href="#" class="inline-block bg-white text-[#1B5268] px-6 md:px-10 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold shadow-xl hover:scale-105 transition-all uppercase tracking-widest">
@@ -233,7 +233,7 @@
                 Unlock powerful performance
             </h3>
             <p class="text-[#5D5A88]/80 text-[10px] md:text-xs lg:text-sm font-medium leading-relaxed mb-4 md:mb-6">
-                that exceeds your expectations and preserves the planet
+                {{ $banner->video_preview_text ?? 'No Text Inputted' }}
             </p>
         </div>
 
@@ -243,10 +243,6 @@
                     <source src="{{ asset('storage/' . $banner->video_2) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-            @else
-                <!-- <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
-                    <source src="{{ asset('images/homepage/Centrifugal pump.mp4') }}" type="video/mp4">
-                </video> -->
             @endif
 
             <div class="absolute inset-0 bg-black/40 md:bg-black/50 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>

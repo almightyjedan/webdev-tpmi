@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Banners\Schemas;
 use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Textarea;
 
 class BannerForm
 {
@@ -46,6 +47,26 @@ class BannerForm
                             ->acceptedFileTypes(['video/mp4'])
                             ->maxSize(102400),
                     ])->columns(2),
+
+                Section::make('Company Information')
+                    ->description('Isi konten teks untuk halaman utama')
+                    ->schema([
+                        Textarea::make('text1')
+                            ->label('Text Utama (Welcome)')
+                            ->rows(3),
+                            
+                        Textarea::make('vision')
+                            ->label('Vision (Visi)'),
+                            
+                        Textarea::make('mission')
+                            ->label('Mission (Misi)'),
+                            
+                        Textarea::make('after_sales')
+                            ->label('After Sales Service'),
+                            
+                        Textarea::make('video_preview_text')
+                            ->label('Video Preview Caption'),
+                    ])
             ]);
     }
 }

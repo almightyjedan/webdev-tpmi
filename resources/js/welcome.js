@@ -90,12 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
             responsive: true,
             maintainAspectRatio: false,
             layout: {
-                padding: {
-                    top: 60,
-                    bottom: 60,
-                    left: 70,
-                    right: 70 
-                }
+                padding: 70
             },
             cutout: '50%',
             plugins: {

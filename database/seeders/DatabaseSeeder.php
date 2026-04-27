@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Industry;
 use App\Models\PumpType;
 use App\Models\DetailPump;
+use App\Models\Banner;
 use App\Models\News;
 use App\Models\Project;
 use App\Models\Comments;
@@ -144,5 +145,20 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        Banner::updateOrCreate(
+        ['id' => 1],
+        [
+            'text1' => 'Torishima Pump Mfg. Indonesia is a company manufacturing pumps and pumping system, including standard and custom. Our solutions are engineered in response to the challenge of the industry. By using state-of-the-art manufacturing facilities, PT. Torishima Pump Mfg. Indonesia is capable of producing world-class industrial pump product ranges including End Suction, Multi-Stage High Pressure, Double Suction and Vertical Mixed Flow Pumps.',
+            
+            'vision' => 'To be recognized as a world-class pump manufacturer company committed to excellence.',
+            
+            'mission' => 'We Develop, manufacture and provide high quality industrial pumps to satisfy customer requirement in infrastructure and industry for domestic and international market.',
+            
+            'after_sales' => 'Our commitment goes beyond the sale. We provide ongoing support, guidance, and solutions to make sure you get the best performance and satisfaction from our product.',
+            
+            'video_preview_text' => 'that exceeds your expectations and preserves the planet.',
+        ]
+    );
     }
 }
