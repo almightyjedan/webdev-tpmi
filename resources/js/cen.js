@@ -218,7 +218,7 @@
                         let yMax = calcY(n, cIn);
                         let yMin = m ? calcY(m, cIn) : 0;
                         // Jika input masuk dalam range pompa ke-i, tambahkan ke tabel
-                        if (hIn <= (yMax + 0.5) && hIn >= (yMin - 0.5) && isGradientValid == true) {
+                        if (hIn <= (yMax + 0.1) && hIn >= (yMin - 0.1) && isGradientValid == true) {
                             foundCount++;
                             let row = tbody.insertRow();
                             row.innerHTML = `
@@ -384,7 +384,7 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}' // WAJIB untuk keamanan Laravel
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // WAJIB untuk keamanan Laravel
                         },
                         body: JSON.stringify({
                             allData: bulkData

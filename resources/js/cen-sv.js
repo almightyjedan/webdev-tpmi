@@ -223,7 +223,7 @@
                         let yMax = calcY(n, cIn);
                         let yMin = m ? calcY(m, cIn) : 0;
                         // Jika input masuk dalam range pompa ke-i, tambahkan ke tabel
-                        if (hIn <= (yMax + 0.001) && hIn >= (yMin - 0.5)&& isGradientValid === true) {
+                        if (hIn <= (yMax + 0.01) && hIn >= (yMin - 0.1)&& isGradientValid === true) {
                             foundCount++;
                             let row = tbody.insertRow();
                             row.innerHTML = `
@@ -408,7 +408,7 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         },
                         body: JSON.stringify({ 
                             type: type, 

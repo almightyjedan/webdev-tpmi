@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <title>CEN-O - Torishima Pump Mfg. Indonesia</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
