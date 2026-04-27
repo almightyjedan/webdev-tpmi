@@ -107,7 +107,7 @@
                 <button class="bg-[var(--primary)] text-white border-none p-[10px_15px] rounded-[12px] cursor-pointer font-[700] text-[13px] disabled:bg-[#cbd5e1]" id="prevBtn">⇠ PREV</button>
                 <div class="flex items-center gap-[8px] bg-[var(--accent-blue)] p-[5px_15px] rounded-[12px] border-2 border-[#bae6fd]">
                     <span class="font-[800] text-[var(--primary)] text-[12px]">POMPA</span>
-                    <input type="number" id="pumpInput" class="w-[35px] border border-[#7dd3fc] rounded-[8px] text-center p-[4px] text-[14px] font-[800] text-[var(--primary)] outline-none" value="1">
+                    <input type="number" id="pumpInput" class="w-[45px] border border-[#7dd3fc] rounded-[8px] text-center p-[4px] text-[14px] font-[800] text-[var(--primary)] outline-none" value="1">
                 </div>
                 <button class="bg-[var(--primary)] text-white border-none p-[10px_15px] rounded-[12px] cursor-pointer font-[700] text-[13px] disabled:bg-[#cbd5e1]" id="nextBtn">NEXT ⇢</button>
             </div>

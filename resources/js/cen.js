@@ -405,13 +405,8 @@
                     }
                 }
             });
-
-            // resources/js/cen-o.js
-
+            
             document.addEventListener('DOMContentLoaded', function() {
-                
-                // --- 1. HANDLING INPUT REALTIME (oninput) ---
-                
                 const actHead = document.getElementById('actHead');
                 const actCap = document.getElementById('actCap');
 
@@ -433,9 +428,6 @@
                     });
                 }
 
-
-                // --- 2. HANDLING TOMBOL (onclick) ---
-
                 // Tombol Save ke Google Sheets
                 const saveBtn = document.getElementById('saveBtn');
                 if (saveBtn) {
@@ -445,58 +437,7 @@
                         }
                     });
                 }
-
-
-                // --- 3. NAVIGASI GRAFIK (Prev, Next, & Input Nomor) ---
-
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-                const pumpInput = document.getElementById('pumpInput');
-
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => {
-                        if (typeof window.changeGraph === 'function') {
-                            window.changeGraph(-1);
-                        }
-                    });
-                }
-
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => {
-                        if (typeof window.changeGraph === 'function') {
-                            window.changeGraph(1);
-                        }
-                    });
-                }
-
-                // Input nomor urut pompa langsung (Enter)
-                if (pumpInput) {
-                    pumpInput.addEventListener('keypress', function(e) {
-                        if (e.key === 'Enter') {
-                            let pN = parseInt(this.value);
-                            if (!isNaN(pN) && typeof window.goToPump === 'function') {
-                                window.goToPump(pN - 1);
-                            }
-                        }
-                    });
-                }
-
-                // --- 4. EVENT DELEGATION UNTUK TABEL REKOMENDASI ---
-                
-                const pumpTableBody = document.getElementById('pumpTableBody');
-                if (pumpTableBody) {
-                    pumpTableBody.addEventListener('click', function(e) {
-                        // Mencari elemen tombol atau link aksi di dalam baris tabel
-                        const target = e.target;
-                        if (target && (target.classList.contains('btn-view') || target.tagName === 'BUTTON')) {
-                            const dataIndex = target.getAttribute('data-index');
-                            if (dataIndex && typeof window.goToPump === 'function') {
-                                window.goToPump(parseInt(dataIndex));
-                            }
-                        }
-                    });
-                }
-            });
+            })
 
             // Pastikan Chart responsif saat ukuran layar berubah
             window.addEventListener('resize', () => {
