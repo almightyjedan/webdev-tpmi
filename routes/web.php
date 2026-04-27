@@ -23,7 +23,11 @@ Route::get('/', function () {
                 ->get();
 
     // Data untuk Chart Donut
-    $industries = Industry::withCount('projects')->get();
+    $industries = Industry::withCount('projects')
+            ->get()
+            ->filter(function ($industry) {
+                return $industry->projects_count > 0;
+            });
 
     // Banner
     $banner = Banner::first();
