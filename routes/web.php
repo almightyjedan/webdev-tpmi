@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\News;
 use App\Models\Industry;
 use App\Models\Banner;
+use App\Models\Gallery;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +41,18 @@ Route::get('/', function () {
         'banner' => $banner,
     ]);
 });
+
+// Gallery
+Route::get('/gallery', function () {
+    return view('gallery.index', [
+        'videos' => Gallery::where('type', 'video')->latest()->paginate(9, ['*'], 'vpage'),
+        'images' => Gallery::where('type', 'image')->latest()->paginate(30, ['*'], 'ipage'),
+    ]);
+});
+
+Route::get('/gallery/{gallery}', function (Gallery $gallery) {
+    return view('gallery.show', compact('gallery'));
+})->name('gallery.show');
 
 // Produts
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
