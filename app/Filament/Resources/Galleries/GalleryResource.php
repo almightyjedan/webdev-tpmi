@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class GalleryResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'Gallery';
+    
     protected static ?string $model = Gallery::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
