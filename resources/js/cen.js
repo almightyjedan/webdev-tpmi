@@ -180,7 +180,7 @@
                 const baseUrl = '/api/proxy/cen-data';
 
                 // Ambil data melalui Proxy Laravel, bukan langsung ke Google
-                const qVisual = fetch(`${baseUrl}?sheet=Visual&range=A2:H`).then(r => r.text());
+                const qVisual = fetch(`${baseUrl}?sheet=Visual&range=A2:I`).then(r => r.text());
                 const qData = fetch(`${baseUrl}?sheet=Data&range=A2:AN`).then(r => r.text());
                 const qMin = fetch(`${baseUrl}?sheet=Data_Min&range=N2:R`).then(r => r.text());
 
@@ -231,6 +231,7 @@
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] font-bold text-[#15803d]">${dtVisual.getValue(i, 5).toFixed(2)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 6).toFixed(2)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] whitespace-nowrap">${dtVisual.getValue(i, 7)}</td> 
+                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 8)}</td> 
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9]">
                                     <button onclick="goToPump(${i + 1})" 
                                         class="bg-[#1b4399] text-white px-[16px] py-[6px] rounded-[6px] text-[11px] font-bold tracking-wider hover:bg-[#15347a] transition-colors shadow-sm">

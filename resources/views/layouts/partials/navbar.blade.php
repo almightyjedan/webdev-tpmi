@@ -88,7 +88,7 @@
                 <button class="w-full px-4 py-6 text-purple-800 group-hover:bg-sky-800/60 group-hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">Media</button>
                 <div class="font-bold absolute right-0 top-full w-full min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover:block text-white shadow-xl">
                     <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">PRESS RELEASE</a>
-                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">GALLERY</a>
+                    <a href="{{ route('gallery.index') }}" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">GALLERY</a>
                     <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">RECENT PROJECT</a>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                          x-transition:enter-end="opacity-100 translate-y-0">
                         <div class="grid gap-4 pl-2 py-2 border-l-2 border-sky-600 mt-2 text-sm md:text-lg">
                             <a href="#" class="font-bold text-gray-800 uppercase">Press Release</a>
-                            <a href="#" class="font-bold text-gray-800 uppercase">Gallery</a>
+                            <a href="{{ route('gallery.index') }}" class="font-bold text-gray-800 uppercase">Gallery</a>
                             <a href="#" class="font-bold text-gray-800 uppercase">Recent Project</a>
                         </div>
                     </div>

@@ -48,7 +48,7 @@ Route::get('/gallery', function () {
         'videos' => Gallery::where('type', 'video')->latest()->paginate(9, ['*'], 'vpage'),
         'images' => Gallery::where('type', 'image')->latest()->paginate(30, ['*'], 'ipage'),
     ]);
-});
+})->name('gallery.index');
 
 Route::get('/gallery/{gallery}', function (Gallery $gallery) {
     return view('gallery.show', compact('gallery'));
