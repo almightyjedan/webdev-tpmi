@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Gallery - Torishima</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <style>
+    .fancybox__backdrop {
+        background: rgba(255, 255, 255, 0.6) !important; 
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .fancybox__backdrop {
+        background: rgba(0, 0, 0, 0.5) !important; 
+        backdrop-filter: blur(10px);
+    }
+
+    .f-thumbs.is-classic {
+        background: rgba(255, 255, 255, 0.3) !important;
+        backdrop-filter: blur(5px);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+</style>
 </head>
 <body class="bg-gray-50">
     @include('layouts.partials.navbar')
@@ -52,17 +72,20 @@
             
             <div class="grid grid-cols-2 md:grid-cols-5 gap-1">
                 @foreach($images as $image)
-                {{-- GANTI aspect-square MENJADI aspect-video --}}
-                <a href="{{ route('gallery.show', $image->id) }}" class="relative aspect-video overflow-hidden bg-gray-100 group shadow-sm border border-gray-200">
+                <a href="{{ asset('storage/'.$image->file_path) }}" 
+                data-fancybox="gallery" 
+                data-caption="{{ $image->title }}"
+                class="relative aspect-video overflow-hidden bg-gray-100 group shadow-sm border border-gray-200">
                     
                     <img src="{{ asset('storage/'.$image->file_path) }}" 
                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
 
-                    {{-- Overlay Judul Tetap Sama --}}
-                    <div class="absolute inset-0 bg-blue-900/30 flex flex-col items-center justify-center p-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                    {{-- Overlay Judul Muncul Hanya Saat Hover --}}
+                    <div class="absolute inset-0 bg-blue-900/60 flex flex-col items-center justify-center p-3 opacity-0 group-hover:opacity-100 transition-all duration-500">
                         <span class="text-white text-center text-[10px] md:text-xs font-bold uppercase tracking-tighter leading-tight">
                             {{ $image->title }}
                         </span>
+                        {{-- "Click to Zoom" sudah dihilangkan sesuai permintaan --}}
                     </div>
                 </a>
                 @endforeach
@@ -81,6 +104,23 @@
         document.querySelectorAll('video').forEach(vid => {
             vid.addEventListener('click', e => e.preventDefault());
         });
+
+        Fancybox.bind("[data-fancybox='gallery']", {
+        // Pengaturan agar judul muncul di bawah
+        Toolbar: {
+            display: {
+                left: ["infobar"],
+                middle: [],
+                right: ["iterateZoom", "slideshow", "fullscreen", "download", "thumbs", "close"],
+            },
+        },
+        // Mengaktifkan list thumbnail di bawah secara otomatis
+        Thumbs: {
+            autoStart: true, // List langsung muncul saat gambar dibuka
+        },
+        showClass: "f-fadeIn",
+        hideClass: "f-fadeOut"
+    });
     </script>
 </body>
 </html>
