@@ -66,6 +66,7 @@
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Potongan Impeller (mm)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Impeller Max (mm)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Motor Drive</th>
+                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Motor Speed (rpm)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Aksi</th>
                         </tr>
                     </thead>

@@ -191,7 +191,7 @@
                     return;
                 }
                 
-                const qVisual = new google.visualization.Query(`${baseUrl}&sheet=Visual&range=A2:J`);
+                const qVisual = new google.visualization.Query(`${baseUrl}&sheet=Visual&range=A2:K`);
                 const qData = new google.visualization.Query(`${baseUrl}&sheet=Data&range=A2:AP`);
                 const qMin = new google.visualization.Query(`${baseUrl}&sheet=Data_Min&range=N2:R`);
                 
@@ -238,6 +238,7 @@
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 7).toFixed(2)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] whitespace-nowrap">${dtVisual.getValue(i, 8)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 9)}</td>
+                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 10)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9]">
                                     <button onclick="goToPump(${i + 1})" 
                                         class="bg-[#1b4399] text-white px-[16px] py-[6px] rounded-[6px] text-[11px] font-bold tracking-wider hover:bg-[#15347a] transition-colors shadow-sm">

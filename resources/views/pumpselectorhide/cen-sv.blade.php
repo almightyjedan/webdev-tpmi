@@ -87,10 +87,6 @@
                             <th class="p-[12px_8px] text-left font-bold uppercase text-[11px]">Size Pump</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Qopt max (m³/h)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Qopt (m³/h)</th>
-                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Flow Ratio</th>
-                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">SP (kW)</th>
-                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Efficiency Pump (%)</th>
-                            <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Efficiency Bowl (%)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Potongan Impeller (mm)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Impeller Max (mm)</th>
                             <th class="p-[12px_8px] text-center font-bold uppercase text-[11px]">Motor Drive</th>
@@ -117,6 +113,6 @@
         </div>
 
         @include('layouts.partials.footer')
-        @vite(['resources/js/cen-sv.js'])
+        @vite(['resources/js/cen-svhide.js'])
     </body>
 </html>

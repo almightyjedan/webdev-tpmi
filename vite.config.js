@@ -11,6 +11,9 @@ export default defineConfig({
                 'resources/js/cen.js',
                 'resources/js/cen-o.js',
                 'resources/js/cen-sv.js',
+                'resources/js/cenhide.js',
+                'resources/js/cen-ohide.js',
+                'resources/js/cen-svhide.js',
                 'resources/js/welcome.js'
                 ],
             refresh: true,

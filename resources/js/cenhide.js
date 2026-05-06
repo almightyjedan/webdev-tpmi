@@ -18,7 +18,7 @@
             
             function init() {
                 // Panggil Google via proxy Laravel
-                fetch(`/api/proxy/ceno-data?sheet=Data&range=A:A`)
+                fetch(`/hide/api/proxy/cen-data?sheet=Data&range=A:A`)
                     .then(res => res.text())
                     .then(text => {
                         // Logika parsing Google DataTable
@@ -34,7 +34,7 @@
              */
             let currentGradientStatus = true;
             window.fetchCoefficients = function() {
-                const baseUrl = '/api/proxy/ceno-data';
+                const baseUrl = '/hide/api/proxy/cen-data';
                 
                 // Array promise untuk mengambil semua sheet melalui proxy Laravel
                 const pN = fetch(`${baseUrl}?sheet=Data&range=A${currentRow}:AR${currentRow}`).then(r => r.text());
@@ -177,7 +177,7 @@
                     document.getElementById('recommendation_container').style.display = "none";
                     return;
                 }
-                const baseUrl = '/api/proxy/ceno-data';
+                const baseUrl = '/hide/api/proxy/cen-data';
 
                 // Ambil data melalui Proxy Laravel, bukan langsung ke Google
                 const qVisual = fetch(`${baseUrl}?sheet=Visual&range=A2:J`).then(r => r.text());
@@ -226,13 +226,10 @@
                                 <td class="p-[12px_8px] text-left border-b border-[#f1f5f9] font-bold text-[#1e293b] whitespace-nowrap">${dtVisual.getValue(i, 0)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 1)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 2).toFixed(2)}</td>
-                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 3).toFixed(2)}</td>
-                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] font-bold text-[#b91c1c]">${dtVisual.getValue(i, 4).toFixed(2)}</td>
-                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] font-bold text-[#15803d]">${dtVisual.getValue(i, 5).toFixed(2)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 6).toFixed(2)}</td>
-                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] whitespace-nowrap">${dtVisual.getValue(i, 7)}</td>
+                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b] whitespace-nowrap">${dtVisual.getValue(i, 7)}</td> 
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 8)}</td>
-                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 9)}</td> 
+                                <td class="p-[12px_8px] text-center border-b border-[#f1f5f9] text-[#1e293b]">${dtVisual.getValue(i, 9)}</td>
                                 <td class="p-[12px_8px] text-center border-b border-[#f1f5f9]">
                                     <button onclick="goToPump(${i + 1})" 
                                         class="bg-[#1b4399] text-white px-[16px] py-[6px] rounded-[6px] text-[11px] font-bold tracking-wider hover:bg-[#15347a] transition-colors shadow-sm">
@@ -356,7 +353,7 @@
                 btn.disabled = true;
 
                 // Ambil koefisien seluruh pompa untuk perhitungan massal
-                const baseUrl = '/api/proxy/ceno-data';
+                const baseUrl = '/hide/api/proxy/cen-data';
                 fetch(`${baseUrl}?sheet=Data&range=AD2:AH`)
                     .then(res => res.text())
                     .then(text => {
@@ -382,7 +379,7 @@
                     }
 
                     // Kirim data ke Google Apps Script via POST
-                    fetch('/api/proxy/ceno-save', {
+                    fetch('/hide/api/proxy/cen-save', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -407,7 +404,7 @@
                     }
                 }
             });
-
+            
             document.addEventListener('DOMContentLoaded', function() {
                 const actHead = document.getElementById('actHead');
                 const actCap = document.getElementById('actCap');

@@ -77,6 +77,7 @@
                     <!-- <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CEN</a>
                     <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">VS-4</a> -->
                     <a href="{{ route('pumpselector.index') }}" class="block px-8 py-4 hover:bg-white/20 text-[14px]">PUMP SELECTOR</a>
+                    <a href="{{ route('hide.pumpselector.index') }}" class="block px-8 py-4 hover:bg-white/20 text-[14px]">PUMP SELECTOR (HIDE)</a>
                 </div>
             </div>
 
@@ -177,6 +178,7 @@
                             <!-- <a href="#" class="font-bold text-gray-800 uppercase">CEN</a>
                             <a href="#" class="font-bold text-gray-800 uppercase">VS-4</a> -->
                             <a href="{{ route('pumpselector.index') }}" class="font-bold text-gray-800 uppercase">PUMP SELECTOR</a>
+                            <a href="{{ route('hide.pumpselector.index') }}" class="font-bold text-gray-800 uppercase">PUMP SELECTOR (HIDE)</a>
                         </div>
                     </div>
                 </div>

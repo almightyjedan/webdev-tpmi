@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PumpController;
+use App\Http\Controllers\PumpControllerHide;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 use App\Models\News;
@@ -76,3 +77,28 @@ Route::post('/api/proxy/ceno-save', [PumpController::class, 'saveToSheets'])->na
 Route::get('/pump-selector/cen-sv', [PumpController::class, 'cenSv'])->name('pumpselector.censv');
 Route::get('/api/proxy/censv-data', [PumpController::class, 'getCensvData'])->name('proxy.censv.data');
 Route::post('/api/proxy/censv-save', [PumpController::class, 'saveToSheetsCensv'])->name('proxy.censv.save');
+
+// Pump Selector Hide
+Route::prefix('hide')->group(function () {
+    
+    // Main Index hide
+    Route::get('/pump-selector', [PumpControllerHide::class, 'index'])->name('hide.pumpselector.index');
+    
+    // API Data hide
+    Route::get('/api/pump-data', [PumpControllerHide::class, 'getPumpData'])->name('hide.api.pump.data');
+
+    // CEN hide
+    Route::get('/pump-selector/cen', [PumpControllerHide::class, 'cen'])->name('hide.pumpselector.cen');
+    Route::get('/api/proxy/cen-data', [PumpControllerHide::class, 'getCenData'])->name('hide.proxy.cen.data');
+    Route::post('/api/proxy/cen-save', [PumpControllerHide::class, 'saveToSheetsCen'])->name('hide.proxy.cen.save');
+
+    // CEN-O hide
+    Route::get('/pump-selector/cen-o', [PumpControllerHide::class, 'cenO'])->name('hide.pumpselector.ceno');
+    Route::get('/api/proxy/ceno-data', [PumpControllerHide::class, 'getCenoData'])->name('hide.proxy.ceno.data');
+    Route::post('/api/proxy/ceno-save', [PumpControllerHide::class, 'saveToSheets'])->name('hide.proxy.ceno.save');
+
+    // CEN-SV hide
+    Route::get('/pump-selector/cen-sv', [PumpControllerHide::class, 'cenSv'])->name('hide.pumpselector.censv');
+    Route::get('/api/proxy/censv-data', [PumpControllerHide::class, 'getCensvData'])->name('hide.proxy.censv.data');
+    Route::post('/api/proxy/censv-save', [PumpControllerHide::class, 'saveToSheetsCensv'])->name('hide.proxy.censv.save');
+});
