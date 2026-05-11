@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class QhseResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'QHSE';
+
     protected static ?string $model = Qhse::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
