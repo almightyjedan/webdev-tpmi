@@ -9,6 +9,7 @@ use App\Models\News;
 use App\Models\Industry;
 use App\Models\Banner;
 use App\Models\Gallery;
+use App\Models\Qhse;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +43,12 @@ Route::get('/', function () {
         'banner' => $banner,
     ]);
 });
+
+// QHSE
+Route::get('/qhse', function () {
+    $qhse = \App\Models\Qhse::first(); 
+    return view('qhse.index', compact('qhse'));
+})->name('qhse.index');
 
 // Gallery
 Route::get('/gallery', function () {

@@ -82,7 +82,7 @@
             </div>
 
             <div class="flex-1 text-center">
-                <a href="#" class="block w-full px-4 py-6 text-purple-800 hover:bg-sky-800/60 hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">QHSE</a>
+                <a href="{{ route('qhse.index') }}" class="block w-full px-4 py-6 text-purple-800 hover:bg-sky-800/60 hover:text-white font-bold uppercase text-base tracking-widest transition duration-300">QHSE</a>
             </div>
 
             <div class="group relative flex-1">
@@ -184,7 +184,7 @@
                 </div>
 
                 <div class="pt-4 border-t border-gray-50">
-                    <a href="#" class="text-xl md:text-2xl font-bold text-purple-900 tracking-tighter block py-2">QHSE</a>
+                    <a href="{{ route('qhse.index') }}" class="text-xl md:text-2xl font-bold text-purple-900 tracking-tighter block py-2">QHSE</a>
                 </div>
 
                 <div class="space-y-4 pt-4 border-t border-gray-50">
