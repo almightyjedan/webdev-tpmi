@@ -1,69 +1,73 @@
-document.addEventListener('DOMContentLoaded', function () {
-				const swiper = new Swiper('.projectSwiper', {
-					slidesPerView: 1,
-					spaceBetween: 24,
-					loop: false,
-					breakpoints: {
-						640: { slidesPerView: 2 },
-						1024: { slidesPerView: 4 },
-					},
-					navigation: {
-						nextEl: '.btn-next',
-						prevEl: '.btn-prev',
-					},
-				});
-			});
+document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.projectSwiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: false,
+        breakpoints: {
+            640: {
+                slidesPerView: 2
+            },
+            1024: {
+                slidesPerView: 4
+            },
+        },
+        navigation: {
+            nextEl: '.btn-next',
+            prevEl: '.btn-prev',
+        },
+    });
+});
 
-			const newsSwiper = new Swiper('.newsSwiper', {
-				slidesPerView: 1,
-				spaceBetween: 20,
-				loop: true,
-				grabCursor: true,
-				
-				freeMode: {
-					enabled: true,
-					sticky: true,
-				},
+const newsSwiper = new Swiper('.newsSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    grabCursor: true,
 
-				autoplay: {
-					delay: 3500,
-					disableOnInteraction: false,
-				},
+    freeMode: {
+        enabled: true,
+        sticky: true,
+    },
 
-				navigation: {
-					nextEl: '.news-next',
-					prevEl: '.news-prev',
-				},
+    autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+    },
 
-				observer: true,
-				observeParents: true,
+    navigation: {
+        nextEl: '.news-next',
+        prevEl: '.news-prev',
+    },
 
-				breakpoints: {
-					425: {
-						slidesPerView: 1.2,
-						spaceBetween: 20,
-					},
-					// Tablet (768px)
-					768: {
-						slidesPerView: 2,
-						spaceBetween: 30,
-					},
-					// Laptop (1024px)
-					1024: {
-						slidesPerView: 4,
-						spaceBetween: 30,
-						freeMode: false,
-					},
-				},
-			});
+    observer: true,
+    observeParents: true,
 
-document.addEventListener('DOMContentLoaded', function () {
+    breakpoints: {
+        425: {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+        },
+        // Tablet (768px)
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        // Laptop (1024px)
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            freeMode: false,
+        },
+    },
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     const chartEl = document.getElementById('solutionsDonutChart');
     if (!chartEl) return;
 
     const labels = JSON.parse(chartEl.dataset.labels || '[]');
     const values = JSON.parse(chartEl.dataset.values || '[]');
-    
+
     const total = values.reduce((a, b) => a + b, 0);
 
     new Chart(chartEl, {

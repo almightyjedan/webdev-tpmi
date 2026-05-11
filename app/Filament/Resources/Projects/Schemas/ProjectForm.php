@@ -24,6 +24,23 @@ class ProjectForm
                     ->label('Project Title')
                     ->required(),
 
+                Select::make('category')
+                    ->label('Category')
+                    ->searchable()
+                    ->options([
+                        'indonesia' => 'Indonesia',
+                        'overseas' => 'Overseas',
+                    ])
+                    ->required()
+                    ->createOptionForm([
+                    TextInput::make('name')
+                        ->label('New Category Name')
+                        ->required(),
+                ])
+                ->createOptionUsing(function (array $data) {
+                    return $data['name'];
+                }),
+
                 Select::make('industries')
                     ->label('Related Industries')
                     ->relationship('industries', 'name')

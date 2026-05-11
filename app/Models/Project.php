@@ -9,6 +9,7 @@ class Project extends Model
     protected $fillable = [
         'main_title',
         'title',
+        'category',
         'description',
         'images',
     ];

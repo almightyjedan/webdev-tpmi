@@ -45,7 +45,7 @@ Route::get('/', function () {
 
 // Gallery
 Route::get('/gallery', function () {
-    return view('gallery.index', [
+    return view('media/gallery.index', [
         'videos' => Gallery::where('type', 'video')->latest()->paginate(9, ['*'], 'vpage'),
         'images' => Gallery::where('type', 'image')->latest()->paginate(30, ['*'], 'ipage'),
     ]);
@@ -54,6 +54,26 @@ Route::get('/gallery', function () {
 Route::get('/gallery/{gallery}', function (Gallery $gallery) {
     return view('gallery.show', compact('gallery'));
 })->name('gallery.show');
+
+// Press Release / News
+Route::get('/press-release', function () {
+    $news = News::latest()->get();
+    return view('media.press-release.index', compact('news'));
+})->name('press-release.index');
+
+Route::get('/press-release/{news:slug}', function (News $news) {
+    return view('media.press-release.show', compact('news'));
+})->name('press-release.show');
+
+// Recent Project
+Route::get('/recent-project', function () {
+    $projects = \App\Models\Project::latest()->get();
+    return view('media.recent-project.index', compact('projects'));
+})->name('recent-project.index');
+
+Route::get('/recent-project/{project}', function (\App\Models\Project $project) {
+    return view('media.recent-project.show', compact('project'));
+})->name('recent-project.show');
 
 // Produts
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
