@@ -24,13 +24,12 @@
             </h2>
         </div>
 
-        <div class="text-slate-500 leading-7 mb-16 text-[15px] text-justify space-y-4">
-            <p>
-                <strong class="text-slate-700">PT Torishima Pump Mfg. Indonesia</strong> is a certified ISO 45001, ISO 14001 and ISO 9001 and by applying Total HES Management, Quality Management, PT Torishima Pump Mfg. Indonesia assures to protect and maintain a safety and healthy and always deliver excellent products and outstanding services.
-            </p>
-            <p>
-                Our product also certified with BKI, allowing customers to recognize if our pump is manufactured according to the standards and regulations listed in BKI. We also the only local company which provide various kinds of the best quality local pumps, internationally standardized and having TKDN Certificates.
-            </p>
+        <div class="text-slate-500 leading-7 mb-16 text-[15px] text-justify space-y-4 prose-slate max-w-none">
+            @if($certificate->general_description)
+                {!! $certificate->general_description !!}
+            @else
+                <p class="italic text-gray-400">Deskripsi sertifikat belum diisi di admin panel.</p>
+            @endif
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-6 lg:gap-10">
