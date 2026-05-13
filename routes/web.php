@@ -12,6 +12,7 @@ use App\Models\Banner;
 use App\Models\Gallery;
 use App\Models\Qhse;
 use App\Models\CorporatePages;
+use App\Models\Certificate;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,6 +46,12 @@ Route::get('/', function () {
         'banner' => $banner,
     ]);
 });
+
+// Certificate
+Route::get('/certificate', function () {
+    $certificate = Certificate::first() ?? new Certificate();
+    return view('about.certificate', compact('certificate'));
+})->name('certificate');
 
 // Corporate Data
 Route::get('/corporate-data', function () {

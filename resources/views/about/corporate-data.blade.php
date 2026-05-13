@@ -106,11 +106,11 @@
                 </div>
             @endif
 
-            <div class="overflow-hidden border border-slate-200 rounded-sm">
+            <div class="overflow-hidden border-2 rounded-sm">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-slate-50 border-b border-slate-200">
-                            <th class="py-4 px-6 text-slate-800 font-bold uppercase text-sm tracking-wider w-1/3 border-r border-slate-200">
+                        <tr class="bg-slate-50 border-b-2">
+                            <th class="py-4 px-6 text-slate-800 font-bold uppercase text-sm tracking-wider w-1/3 border-r-2">
                                 Machine and Equipment
                             </th>
                             <th class="py-4 px-6 text-slate-800 font-bold uppercase text-sm tracking-wider">
@@ -121,7 +121,7 @@
                     <tbody class="divide-y divide-slate-100">
                         @foreach($facilityList ?? [] as $item)
                             <tr class="hover:bg-slate-50/50 transition-colors">
-                                <td class="py-4 px-6 font-bold text-slate-700 align-top border-r border-slate-100 italic">
+                                <td class="py-4 px-6 font-bold text-slate-700 align-top border-r-2 italic">
                                     {{ $item['name'] ?? '-' }}
                                 </td>
                                 <td class="py-4 px-6 text-slate-600 align-top text-[14px] leading-6 whitespace-pre-line">

@@ -45,7 +45,7 @@
                             <a href="{{ route('corporate-data') }}" class="block px-8 py-4 hover:bg-white/20 text-[14px]">CORPORATE DATA</a>
                         </div>
                     </div>
-                    <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CERTIFICATE</a>
+                    <a href="{{ route('certificate') }}" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CERTIFICATE</a>
                     <a href="#" class="block px-8 py-4 hover:bg-white/20 text-[14px]">COMPANY AFFILIATE</a>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                                 <a href="{{ route('corporate-profile') }}">• Corporate Profile</a>
                                 <a href="{{ route('corporate-data') }}">• Corporate Data</a>
                             </div>
-                            <a href="#" class="font-bold text-gray-800 uppercase">Certificate</a>
+                            <a href="{{ route('certificate') }}" class="font-bold text-gray-800 uppercase">Certificate</a>
                             <a href="#" class="font-bold text-gray-800 uppercase">Company Affiliate</a>
                         </div>
                     </div>
