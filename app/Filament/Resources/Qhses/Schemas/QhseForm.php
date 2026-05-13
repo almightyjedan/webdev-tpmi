@@ -58,8 +58,8 @@ class QhseForm
                                     ->label('Policy Detail')
                                     ->required(),
                             ])
-                            ->collapsible() // Bisa di-minimize di admin agar rapi
-                            ->cloneable()   // Bisa di-duplicate
+                            ->collapsible()
+                            ->cloneable()
                             ->itemLabel(fn (array $state): ?string => $state['title'] ?? 'New Policy Item'),
                     ]),
 

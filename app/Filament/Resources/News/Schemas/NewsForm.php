@@ -7,7 +7,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Illuminate\Support\Str; // PASTIKAN INI ADA
+use Illuminate\Support\Str;
+use Filament\Forms\Components\RichEditor;
 use Filament\Schemas\Schema;
 
 class NewsForm
@@ -62,7 +63,7 @@ class NewsForm
                 ->default(now())
                 ->required(),
 
-            Textarea::make('description')
+            RichEditor::make('description')
                 ->required()
                 ->columnSpanFull(),
         ]);

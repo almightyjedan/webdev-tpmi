@@ -29,11 +29,17 @@
 <body class="bg-gray-50">
     @include('layouts.partials.navbar')
 
-    <div class="max-w-7xl mx-auto px-4 py-10 font-sans">
-    
-        <div class="mb-16">
-            <h2 id="video-list" class="scroll-mt-24 text-2xl font-bold text-gray-900 mb-8 border-l-4 border-blue-900 pl-4 uppercase tracking-wider">Videos</h2>
-            
+    <section class="max-w-7xl mx-auto px-4 pt-16">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-800 pb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 inline-block relative">
+                        Videos
+                        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-[#4A80D4]"></span>
+                    </h2>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @foreach($videos as $video)
                 <div class="group cursor-pointer">
@@ -65,11 +71,17 @@
             <div class="mt-10">
                 {{ $videos->fragment('video-list')->appends(['ipage' => $images->currentPage()])->links() }}
             </div>
-        </div>
 
         <div>
-            <h2 id="photo-list" class="scroll-mt-52 text-2xl font-bold text-gray-900 mb-8 border-l-4 border-green-700 pl-4 uppercase tracking-wider">Photos</h2>
-            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-800 pb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 inline-block relative">
+                        Photos
+                        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-[#4A80D4]"></span>
+                    </h2>
+                </div>
+            </div>
+
             <div class="grid grid-cols-2 md:grid-cols-5 gap-1">
                 @foreach($images as $image)
                 <a href="{{ asset('storage/'.$image->file_path) }}" 
@@ -96,7 +108,7 @@
             </div>
         </div>
 
-    </div>
+    </section>
 
     @include('layouts.partials.footer')
 

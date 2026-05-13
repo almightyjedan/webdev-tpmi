@@ -44,6 +44,12 @@ Route::get('/', function () {
     ]);
 });
 
+// Corporate Data
+Route::get('/corporate-data', function () {
+    $corporate = \App\Models\CorporatePages::first(); 
+    return view('about.corporate-data', compact('corporate'));
+})->name('corporate-data');
+
 // QHSE
 Route::get('/qhse', function () {
     $qhse = \App\Models\Qhse::first(); 

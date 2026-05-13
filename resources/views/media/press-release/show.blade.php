@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <title>{{ $news->title }} - Torishima</title>
 </head>
 <body class="bg-white">
@@ -36,7 +37,7 @@
         </div>
         @endif
 
-        <div class="prose prose-blue max-w-none text-gray-700 leading-relaxed lg:text-lg">
+        <div class="prose max-w-none text-gray-700 prose leading-relaxed lg:text-lg">
             {!! $news->description !!}
         </div>
 

@@ -168,7 +168,7 @@
                                     <div class="hidden group-hover:flex absolute inset-0 bg-black/70 p-4 flex-col justify-center items-start text-white transition-opacity">
                                         <h3 class="font-bold text-lg uppercase mb-1 leading-tight">{{ $project->title }}</h3>
                                         <p class="text-xs mb-4 line-clamp-3">{{ $project->description }}</p>
-                                        <button class="bg-white text-black text-[10px] px-3 py-1 font-bold uppercase">Read More</button>
+                                        <a href="{{ route('recent-project.show', $project->id) }}" class="bg-white text-black text-[10px] px-3 py-1 font-bold uppercase">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                 </div>
 
                 <div class="w-full lg:w-20 h-16 lg:h-60 flex-shrink-0">
-                    <a href="/projects" class="group relative w-full h-full border-4 border-purple-900 bg-white hover:bg-purple-900 transition-all duration-300 flex items-center justify-center">
+                    <a href="/recent-project" class="group relative w-full h-full border-4 border-purple-900 bg-white hover:bg-purple-900 transition-all duration-300 flex items-center justify-center">
                         <span class="font-bold text-purple-900 group-hover:text-white text-center uppercase tracking-widest text-xs lg:text-[10px] lg:[writing-mode:vertical-lr]">
                             VIEW MORE
                         </span>
@@ -285,7 +285,7 @@
                     </div>
                     <h4 class="text-[#1B5268] text-[14px] font-extrabold leading-tight uppercase mb-2 line-clamp-2">{{ $n->title }}</h4>
                     <div class="mt-auto">
-                        <a href="#" class="inline-block bg-[#5D5A88] text-white px-4 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-md">Read More</a>
+                        <a href="{{ route('press-release.show', $n->slug) }}" class="inline-block bg-[#5D5A88] text-white px-4 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-md">Read More</a>
                     </div>
                 </div>
             </div>
