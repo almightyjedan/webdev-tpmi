@@ -79,7 +79,7 @@
                                     <li class="flex items-center">
                                         <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></div>
                                         <a href="#" class="text-blue-600 font-medium hover:underline text-sm">
-                                            {{ $aff }}
+                                            {{ is_array($aff) ? ($aff['name'] ?? '-') : $aff }}
                                         </a>
                                     </li>
                                 @endforeach

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PumpController;
 use App\Http\Controllers\PumpControllerHide;
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 use App\Models\News;
@@ -10,6 +11,7 @@ use App\Models\Industry;
 use App\Models\Banner;
 use App\Models\Gallery;
 use App\Models\Qhse;
+use App\Models\CorporatePages;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,13 +48,19 @@ Route::get('/', function () {
 
 // Corporate Data
 Route::get('/corporate-data', function () {
-    $corporate = \App\Models\CorporatePages::first(); 
+    $corporate = CorporatePages::first() ?? new CorporatePages();
     return view('about.corporate-data', compact('corporate'));
 })->name('corporate-data');
 
+// Corporate Profile
+Route::get('/corporate-profile', function () {
+    $corporate = CorporatePages::first() ?? new CorporatePages();
+    return view('about.corporate-profile', compact('corporate'));
+})->name('corporate-profile');
+
 // QHSE
 Route::get('/qhse', function () {
-    $qhse = \App\Models\Qhse::first(); 
+    $qhse = Qhse::first(); 
     return view('qhse.index', compact('qhse'));
 })->name('qhse.index');
 

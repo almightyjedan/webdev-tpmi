@@ -41,7 +41,7 @@
                         <a class="block px-8 py-4 hover:bg-white/20 text-[14px] flex justify-between items-center transition">OUR STORY <span>></span></a>
                         <div class="absolute left-full top-0 min-w-[250px] bg-sky-800/60 backdrop-blur-md hidden group-hover/sub:block text-white shadow-2xl border-l border-white/20">
                             <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE OUTLINE</a>
-                            <a href="#" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE PROFILE</a>
+                            <a href="{{ route('corporate-profile') }}" class="block px-8 py-4 hover:bg-white/20 border-b border-white/10 text-[14px]">CORPORATE PROFILE</a>
                             <a href="{{ route('corporate-data') }}" class="block px-8 py-4 hover:bg-white/20 text-[14px]">CORPORATE DATA</a>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                             <a class="font-bold text-gray-800">OUR STORY</a>
                             <div class="flex flex-col gap-2 pl-4 text-gray-500 italic">
                                 <a href="#">• Corporate Outline</a>
-                                <a href="#">• Corporate Profile</a>
+                                <a href="{{ route('corporate-profile') }}">• Corporate Profile</a>
                                 <a href="{{ route('corporate-data') }}">• Corporate Data</a>
                             </div>
                             <a href="#" class="font-bold text-gray-800 uppercase">Certificate</a>
