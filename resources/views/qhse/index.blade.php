@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QHSE - Torishima Pumps Indonesia</title>
+    
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
     <style>
         [x-cloak] { display: none !important; }
@@ -79,7 +82,6 @@
                     @if($qhse->gallery_images)
                         @foreach($qhse->gallery_images as $index => $img)
                             @php
-                                // Bikin caption otomatis, misal: "QHSE Activity 1", "QHSE Activity 2", dst.
                                 $imageTitle = "QHSE Activity " . ($index + 1);
                             @endphp
 
@@ -140,5 +142,27 @@
 
     @include('layouts.partials.footer')
     
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        // Bind Fancybox ke galeri QHSE dengan memunculkan tombol Thumbs (List gambar di bawah)
+        Fancybox.bind("[data-fancybox='qhse-gallery']", {
+            // Memaksa plugin Thumbs (list gambar bawah) langsung terbuka otomatis
+            Html: {
+                video: {
+                    autoplay: false
+                }
+            },
+            Toolbar: {
+                display: {
+                    left: ["infobar"],
+                    middle: [],
+                    right: ["slideshow", "thumbs", "close"],
+                },
+            },
+            Thumbs: {
+                autoStart: true, // List gambar di bawah langsung muncul pas di-zoom!
+            }
+        });
+    </script>
 </body>
 </html>
