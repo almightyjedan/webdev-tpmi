@@ -78,10 +78,27 @@
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1">
                     @if($qhse->gallery_images)
-                        @foreach($qhse->gallery_images as $img)
-                            <div class="aspect-square bg-gray-100 overflow-hidden">
-                                <img src="{{ asset('storage/' . $img) }}" class="w-full h-full object-cover hover:opacity-80 transition">
-                            </div>
+                        @foreach($qhse->gallery_images as $index => $img)
+                            @php
+                                // Bikin caption otomatis, misal: "QHSE Activity 1", "QHSE Activity 2", dst.
+                                $imageTitle = "QHSE Activity " . ($index + 1);
+                            @endphp
+
+                            <a href="{{ asset('storage/' . $img) }}" 
+                            data-fancybox="qhse-gallery" 
+                            data-caption="{{ $imageTitle }}"
+                            class="relative aspect-square overflow-hidden bg-gray-100 group shadow-sm border border-gray-200 block">
+                                
+                                <img src="{{ asset('storage/' . $img) }}" 
+                                    class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+
+                                {{-- Overlay Biru & Judul Muncul Hanya Saat Hover --}}
+                                <div class="absolute inset-0 bg-blue-900/60 flex flex-col items-center justify-center p-3 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                                    <span class="text-white text-center text-[10px] md:text-xs font-bold uppercase tracking-tighter leading-tight">
+                                        {{ $imageTitle }}
+                                    </span>
+                                </div>
+                            </a>
                         @endforeach
                     @endif
                 </div>
