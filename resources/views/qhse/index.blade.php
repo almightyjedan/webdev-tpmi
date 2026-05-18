@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QHSE - Torishima Pumps Indonesia</title>
-    
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-
     <style>
         [x-cloak] { display: none !important; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         .hero-gradient {
             background: linear-gradient(90deg, #7C7FFF 0%, #7C7FFF 100%);
+        }
+        .fancybox__backdrop {
+        background: rgba(255, 255, 255, 0.6) !important; 
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        }
+        .fancybox__backdrop {
+            background: rgba(0, 0, 0, 0.5) !important; 
+            backdrop-filter: blur(10px);
+        }
+        .f-thumbs.is-classic {
+            background: rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -135,7 +145,6 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
-        // Bind Fancybox ke galeri QHSE dengan memunculkan tombol Thumbs (List gambar di bawah)
         Fancybox.bind("[data-fancybox='qhse-gallery']", {
         // Pengaturan agar judul muncul di bawah
             Toolbar: {
