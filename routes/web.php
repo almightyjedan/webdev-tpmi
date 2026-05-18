@@ -13,6 +13,7 @@ use App\Models\Gallery;
 use App\Models\Qhse;
 use App\Models\CorporatePages;
 use App\Models\Certificate;
+use App\Models\PumpTestFacility;
 
 Route::get('/', function () {
     return view('welcome');
@@ -70,6 +71,12 @@ Route::get('/qhse', function () {
     $qhse = Qhse::first(); 
     return view('qhse.index', compact('qhse'));
 })->name('qhse.index');
+
+// Pump Test Facility
+Route::get('/pump-test-facility', function () {
+    $pumpTestFacility = PumpTestFacility::first(); 
+    return view('pumptestfacility.index', compact('pumpTestFacility'));
+})->name('pump-test-facility.index');
 
 // Gallery
 Route::get('/gallery', function () {

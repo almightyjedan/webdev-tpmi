@@ -35,10 +35,13 @@
         </div>
 
         <main class="container mx-auto px-4 py-12 max-w-6xl">
-            <div class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 border-b-2 border-blue-600 inline-block pb-1">
-                    Quality Health Safety Environment
-                </h2>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-800 pb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 inline-block relative">
+                        Quality Health Safety Environment
+                        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-[#4A80D4]"></span>
+                    </h2>
+                </div>
             </div>
 
             <div class="prose prose-slate max-w-none text-gray-500 leading-relaxed mb-16 text-justify">
@@ -70,12 +73,13 @@
             </div>
 
             {{-- Latest Activity --}}
-            <div class="mb-20">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                    Latest Activity
-                </h2>
-                <div class="h-1 w-12 bg-blue-600 mb-8"></div>
-                
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-800 pb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 inline-block relative">
+                        Latest Activity
+                        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-[#4A80D4]"></span>
+                    </h2>
+                </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-1">
                     @if($qhse->gallery_images)
                         @foreach($qhse->gallery_images as $img)
@@ -88,10 +92,13 @@
             </div>
 
             {{-- Alur Berkunjung --}}
-            <div class="mb-20">
-                <h2 class="text-2xl font-bold text-gray-800 mb-8">Alur Berkunjung Ke TPMI</h2>
-                <div class="h-1 w-12 bg-blue-600 mb-10"></div>
-
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-800 pb-6">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 inline-block relative">
+                        Alur Berkunjung Ke TPMI
+                        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-[#4A80D4]"></span>
+                    </h2>
+                </div>
                 @if($qhse->video_url)
                     <div class="w-full aspect-video rounded-lg overflow-hidden shadow-xl mb-12 bg-black">
                         @php 
