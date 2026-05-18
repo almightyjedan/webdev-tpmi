@@ -16,4 +16,14 @@ class EditPumpTestFacility extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'Banner updated!';
+    }
 }

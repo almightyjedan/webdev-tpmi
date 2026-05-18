@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class CorporatePagesResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'About Us';
+
     protected static ?string $model = CorporatePages::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;

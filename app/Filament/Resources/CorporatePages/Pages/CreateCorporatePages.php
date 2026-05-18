@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateCorporatePages extends CreateRecord
 {
     protected static string $resource = CorporatePagesResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
+    }
 }

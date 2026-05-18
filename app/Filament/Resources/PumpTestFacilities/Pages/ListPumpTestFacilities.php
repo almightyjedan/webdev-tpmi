@@ -16,4 +16,15 @@ class ListPumpTestFacilities extends ListRecords
             CreateAction::make(),
         ];
     }
+
+    public function mount(): void
+    {
+        $record = \App\Models\PumpTestFacility::first();
+
+        if ($record) {
+            $this->redirect(static::getResource()::getUrl('edit', ['record' => $record]));
+        } else {
+            $this->redirect(static::getResource()::getUrl('create'));
+        }
+    }
 }

@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class PumpTestFacilityResource extends Resource
 {
+    protected static string|\UnitEnum|null $navigationGroup = 'What We Offer';
+
     protected static ?string $model = PumpTestFacility::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
