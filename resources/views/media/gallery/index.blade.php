@@ -92,12 +92,10 @@
                     <img src="{{ asset('storage/'.$image->file_path) }}" 
                         class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
 
-                    {{-- Overlay Judul Muncul Hanya Saat Hover --}}
                     <div class="absolute inset-0 bg-blue-900/60 flex flex-col items-center justify-center p-3 opacity-0 group-hover:opacity-100 transition-all duration-500">
                         <span class="text-white text-center text-[10px] md:text-xs font-bold uppercase tracking-tighter leading-tight">
                             {{ $image->title }}
                         </span>
-                        {{-- "Click to Zoom" sudah dihilangkan sesuai permintaan --}}
                     </div>
                 </a>
                 @endforeach
